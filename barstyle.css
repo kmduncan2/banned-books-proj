@@ -1,0 +1,31 @@
+.bar {
+    fill: rgb(176,224,230);
+}
+
+.title {
+    font-family: New Century Schoolbook, TeX Gyre Schola, serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.axes {
+    font-size: 14px;
+}
+
+.axis-x path,
+.axis-y path {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis-x .tick line,
+.axis-y .tick line {
+    stroke: #ccc;
+}
+
+/*.axis .axis-x .labels text{
+    font-family: New Century Schoolbook, TeX Gyre Schola, serif;
+    font-size: 17px;
+    transform: rotate(-90deg);
+}*/
