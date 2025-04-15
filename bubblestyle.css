@@ -4,6 +4,8 @@
     fill: white;
 }*/
 
+/* reference: https://www.geeksforgeeks.org/how-to-center-text-horizontally-and-vertically-inside-a-div-block-in-css/ */
+
 .title {
     font-family: New Century Schoolbook, TeX Gyre Schola, serif;
     font-size: 18px;
@@ -30,3 +32,20 @@
     font-family: New Century Schoolbook, TeX Gyre Schola, serif;
     font-size: 12px;
 }
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 50px;
+    padding: 2px;
+    /* font: 100%; */
+    background: rgba(255, 255, 255, 0.758);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    pointer-events: none;
+  }

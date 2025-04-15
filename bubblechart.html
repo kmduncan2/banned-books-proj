@@ -26,6 +26,10 @@
             .append("g")
             .attr("transform", `translate(${margins.left},${margins.top})`);
 
+        var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
         d3.csv("bannedBooks.csv").then(function(data) {
             data.forEach(function(d) {
                 d.Times = +d.Times;
@@ -93,7 +97,21 @@
             .attr("cy", d => y(d.NumStates))
             .style("stroke-width", "0px")
             .style("opacity", "0.5")
-            .style("fill", "#ae0c00");
+            .style("fill", "#ae0c00")//;
+            .on("mouseover", function(event,d) {
+                div.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                div.html(d.Title + " by " + d.Author)
+                      .attr("class", "tooltip")
+                     .style("left", (event.pageX + 10) + "px")
+                     .style("top", (event.pageY + 10) + "px");
+                })
+            .on("mouseout", function(d) {
+                div.transition()
+                  .duration(500)
+                  .style("opacity", 0);
+            });
 
         });
     </script>
