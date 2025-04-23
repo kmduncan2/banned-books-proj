@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donut Chart</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+    <link rel="stylesheet" href="dountstyle.css">
+</head>
+<h1>Banned Books Donut Chart</h1>
+<body>
+    <div id="chart-container"></div>
+    <!-- data from:  -->
+
+    <script>
+        const containerWidth = 1000;
+        const containerHeight = 700;
+        const margins = { top: 50, right: 40, bottom: 80, left: 100 };
+        const margin = 200;
+        const width = containerWidth - 300;
+        const height = containerHeight - 300;
+        const radius = Math.min(width, height) / 2;
+        const banner = new Map();
+
+        const svg = d3.select("#chart-container")
+            .append("svg")
+            .attr("width", containerWidth)
+            .attr("height", containerHeight)
+            .append("g")
+            .attr("transform", `translate(${margins.left},${margins.top})`);
+
+        d3.csv("who-challenges.csv").then(function(data) {
+            data.forEach(function(d) {
+                d.percentage = +d.percentage;
+                banner.set(d.advocates, d.percentage);
+            });
+        console.log(banner)
+        const color = d3.scaleOrdinal()
+          .domain(["Board/Administration", "Pressure Groups", "Parents", "Elected Officials/Government", "Other", "Patrons", "Librarians/Teachers/Staff"])
+          .range(["#ffd700","#ffb14e","#fa8775","#ea5f94","#cd34b5","#9d02d7","#0000ff"]);
+
+          svg.append("g")
+            .attr("class", "legendQuant")
+            .attr("transform", "translate(600,0)");
+
+        var legend = d3.legendColor()
+            .title("Advocates")
+            .scale(color)
+            .shapePadding(5);
+
+        svg.select(".legendQuant")
+            .call(legend);
+
+        //adding title and axis labels
+        svg.append("text")
+            .attr("class", "title")
+            .attr("x", width/2)
+            .attr("y", 0)
+            .attr("text-anchor", "middle")
+            .text("Who Bans Books");
+
+        const pie = d3.pie()
+          .value(d => d.percentage);
+
+        const data_ready = pie(Object.entries(banner))
+
+        // adding donut
+        svg.selectAll('donut')
+            .data(pie(data))
+                //.enter()
+            .join('path')
+            .attr('d', d3.arc()
+                .innerRadius(100)         // This is the size of the donut hole
+                .outerRadius(radius)
+            )
+            .attr('fill', d => color(d.advocates))
+            .attr("stroke", "black")
+            .style("stroke-width", "2px")
+            .style("opacity", 0.7)
+            .attr("transform", `translate(${width/2},${height/2 + 100})`);
+
+        });
+    </script>
+</body>
+</html>
