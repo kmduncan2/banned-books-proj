@@ -6,7 +6,7 @@
     <title>Donut Chart</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
-    <link rel="stylesheet" href="dountstyle.css">
+    <link rel="stylesheet" href="donutstyle.css">
 </head>
 <h1>Banned Books Donut Chart</h1>
 <body>
@@ -35,24 +35,24 @@
             .attr("class", "tooltip")
             .style("opacity", 0);
 
-        d3.csv("who-challenges.csv").then(function(data) {
+        d3.csv("where-challenged.csv").then(function(data) {
             data.forEach(function(d) {
                 d.percentage = +d.percentage;
-                banner.set(d.advocates, d.percentage);
+                banner.set(d.place, d.percentage);
             });
             //console.log(banner);
             data = banner;
             //console.log(data);
             const color = d3.scaleOrdinal()
-            .domain(["Board/Administration", "Pressure Groups", "Parents", "Elected Officials/Government", "Other", "Patrons", "Librarians/Teachers/Staff"])
-            .range(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f']);
+            .domain(["Public Libraries", "School Libraries", "Schools", "Higher Education/Other"])
+            .range(['#1f78b4','#33a02c','#e31a1c','#fdbf6f']);
 
         svg.append("g")
             .attr("class", "legendQuant")
             .attr("transform", `translate(600,${height/2})`);
 
         var legend = d3.legendColor()
-            .title("Advocates")
+            .title("Places")
             .scale(color)
             .shapePadding(5);
 
@@ -65,7 +65,7 @@
             .attr("x", width/2)
             .attr("y", 0)
             .attr("text-anchor", "middle")
-            .text("Who Bans Books in 2024");
+            .text("Where Books Are Banned 2024");
 
         svg.append("text")
             .attr("x", width/2)
