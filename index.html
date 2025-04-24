@@ -79,7 +79,8 @@
                 to power to ban them. The next largest group is parents and pressure groups, making up 42% of 
                 advocates for banning books. Many of these pressure groups are conservative communities, one 
                 example being parents rights groups. As the name suggests, pressure groups pressure organizations 
-                (schools, libraries, etc) to restrict access to books they think are inappropriate for public spaces. 
+                (schools, libraries, etc) to restrict access to books they think are inappropriate for public spaces.
+                What are they censoring? 
              </p>
         </div>
         <div class="chart-container">
@@ -419,6 +420,10 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                 .attr("height", containerHeight)
                 .append("g")
                 .attr("transform", `translate(${margins.left},${margins.top})`);
+            
+            var div = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
 
             d3.csv("themes.csv").then(function(data) {
                 // Convert string values to numbers
@@ -498,7 +503,21 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                     .attr("y", d => y(d.theme))
                     .attr("height", y.bandwidth())
                     //.style("fill", "#c71e1d");
-                    .attr('fill', d => color(d["type"]));
+                    .attr('fill', d => color(d["type"]))
+                    .on("mouseover", function(event,d) {
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        div.html(d["num-books"] + " books")
+                            .attr("class", "tooltip")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY + 10) + "px");
+                        })
+                    .on("mouseout", function(d) {
+                        div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                    });;
             
             });
         }
