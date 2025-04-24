@@ -1,126 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>D3.js Visualizations</title>
-    <style>
-        /* body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-        } */
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-            margin-top: 20px;
-        }
-        .chart-container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 900px;
-            height: 600px;
-        }
-        .chart-title {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #444;
-        }
-        /* .bar {
-            fill: steelblue;
-            transition: fill 0.3s;
-        }
-        .bar:hover {
-            fill: #ff7f0e;
-        } */
-        /* .axis text {
-            font-size: 12px;
-        }
-        .axis path,
-        .axis line {
-            fill: none;
-            stroke: #000;
-            shape-rendering: crispEdges;
-        } */
-        .axes {
-            font-size: 14px;
-        }
-
-        .axis-x path,
-        .axis-y path {
-            fill: none;
-            stroke: black;
-            shape-rendering: crispEdges;
-        }
-
-        .axis-x .tick line,
-        .axis-y .tick line {
-            stroke: #ccc;
-        }
-
-        .axis text {
-            font-family: New Century Schoolbook, TeX Gyre Schola, serif;
-            font-size: 12px;
-        }
-        .dot {
-            fill: #ff7f0e;
-            opacity: 0.7;
-            transition: r 0.3s, opacity 0.3s;
-        }
-        .dot:hover {
-            r: 8;
-            opacity: 1;
-        }
-        .node {
-            stroke: #fff;
-            stroke-width: 1px;
-            transition: opacity 0.3s;
-        }
-        .node:hover {
-            opacity: 0.8;
-        }
-
-        .tooltip {
-            position: absolute;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: auto;
-            height: 50px;
-            padding: 2px;
-            background: rgb(255, 255, 255);
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 8px;
-            pointer-events: none;
-        }
-    </style>
+    <title>Banned Books</title>
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    <h1>Three Visualizations on the Same HTML page</h1>
+    <div class="heading">
+        <!-- <h2 class="section-title">Story</h2> -->
+        <!-- <img src="pic_trulli.jpg" alt="Italian Trulli"> -->
+         <img src="nypubliclibrarybookimg.png" style="width:110%;height:600px;">
+    </div>
     <div class="container">
+        <div class="text-container">
+            <!-- <h2 class="section-title">Story</h2> -->
+             <p class="section-text">
+                Over the last 5 years, book bans have become more prevalent in the United States. 
+                After the COVID-19 pandemic and election of former president Biden, there was a drastic 
+                increase in the numbers of books banned and challenged yearly in the US.
+             </p>
+        </div>
         <div class="chart-container">
             <h2 class="chart-title">Where Books Are Banned 2024</h2>
             <div id="donut-chart"></div>
+        </div>
+        <div class="text-container">
+            <h2 class="section-title">Story</h2>
         </div>
         <div class="chart-container">
             <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
             <div id="scatterplot"></div>
         </div>
+        <div class="text-container">
+            <h2 class="section-title">Story</h2>
+        </div>
         <div class="chart-container">
             <h2 class="chart-title">Themes of Books Banned in 2022-2023</h2>
             <div id="treemap"></div>
         </div>
+        <div class="text-container">
+            <h2 class="section-title">Story</h2>
+        </div>
         <div class="chart-container">
             <h2 class="chart-title">Who Bans Books 2024</h2>
             <div id="donut-chart2"></div>
+        </div>
+        <div class="text-container">
+            <h2 class="section-title">Story</h2>
         </div>
         <div class="chart-container">
             <h2 class="chart-title">Books Challenged in the Last 10 Years</h2>
@@ -379,6 +304,12 @@
             .attr("text-anchor", "middle")
             .text("Number of States Banned In");
 
+        svg.append("text")
+            .attr("x", 50)
+            .attr("y", height + 50)
+            .attr("text-anchor", "middle")
+            .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
+
             // adding points
         svg.selectAll(".point")
             .data(data)
@@ -410,7 +341,7 @@
         }
 
         // TREEMAP
-        function renderTreemap() {
+        function renderBarChart() {
             const containerWidth = 900;
             const containerHeight = 600;
             const margins = { top: 20, right: 50, bottom: 100, left: 150 };
@@ -485,6 +416,12 @@
                     .attr("transform", "rotate(-90)")
                     .attr("text-anchor", "middle");
 
+                svg.append("text")
+                    .attr("x", -50)
+                    .attr("y", height + 50)
+                    .attr("text-anchor", "middle")
+                    .html("Data Source: <a href='https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression-in-schools/'>PEN America</a>");
+
                 // adding bars
                 svg.selectAll(".bar")
                     .data(data)
@@ -504,7 +441,7 @@
         // Render all charts
         renderDonutChart();
         renderScatterplot();
-        renderTreemap();
+        renderBarChart();
         renderDonutChart2();
     </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9350595ed95e15d8","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.4.0-1-g37f21b1","token":"cefab20fd71347d6a38acf95504d2fe5"}' crossorigin="anonymous"></script>
