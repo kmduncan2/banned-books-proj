@@ -13,6 +13,10 @@
     <!-- data from:  -->
 
     <script>
+        //idea: have buttons that switch between normal view (themes) and books banned by admin, formal, or informal
+        //each button would be the same chart but with a different color scale (sequential for how many times banned by each)
+        //or perhaps the buttons should filter for themes
+        //then there can be a small multiples moment of the same chart but with the y-axis being times banned by each group
         const containerWidth = 800;
         const containerHeight = 700;
         const margins = { top: 50, right: 40, bottom: 80, left: 100 };
@@ -46,7 +50,7 @@
         const y = d3
           .scaleLinear()
           .domain([
-            d3.min(data, (d) => d.NumStates),
+            0,
             d3.max(data, (d) => d.NumStates),
           ])
           .nice()

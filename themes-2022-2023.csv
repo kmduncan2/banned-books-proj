@@ -1,9 +1,9 @@
-theme,percent,num-books
-Violence & Physical Abuse,44,385
-Health & Wellbeing for Students,38,331
-Grief/Death,30,264
-Race/Racism,30,260
-LGBTQ+,26,229
-Sexual Content,24,211
-Teen Pregnancy/Abortion/Sexual Assult,17,150
-Transgender,8,68
+theme,percent,num-books,type
+Violence & Physical Abuse,44,385,Violence and/or Sex
+Health & Wellbeing for Students,38,331,Mental Health
+Grief/Death,30,264,Mental Health
+Race/Racism,30,260,Identity
+LGBTQ+,26,229,Identity
+Sexual Content,24,211,Violence and/or Sex
+Teen Pregnancy/Abortion/Sexual Assult,17,150,Violence and/or Sex
+Transgender,8,68,Identity
