@@ -1,11 +1,18 @@
 body {
-    /* font-family: Arial, sans-serif; */
     margin: 20px;
     background-color: #000144;
 }
 h1 {
     color: #ffffff;
     text-align: center;
+}
+
+.heading {
+    /* display: flex; */
+    height: 250px;
+}
+.heading-text {
+    font-size: 50pt;
 }
 .container {
     display: flex;
@@ -32,16 +39,40 @@ h1 {
     background: rgb(204, 230, 255);
     padding: 20px;
     width: 100%;
-    height: 600px;
+    height: 300px;
 }
 .section-title {
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
+    font-size: 40px;
     color: #000000;
 }
 .section-text {
     font-size: 8mm;
     color: #000000;
+}
+
+.context {
+    /* background: rgb(204, 230, 255); */
+    padding: 10px;
+    width: 100%;
+    height: 300px;
+}
+.context-title {
+    text-align: left;
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+.follow-up-title {
+    text-align: left;
+    font-size: 30px;
+    color: #ffffff;
+    font-style: italic;
+}
+.context-text {
+    font-size: 18px;
+    color: #ffffff;
 }
         /* .bar {
             fill: steelblue;
