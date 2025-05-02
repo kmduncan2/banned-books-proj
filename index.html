@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="stylesheet.css" />
     <title>Banned Books</title>
-    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
     <div class="container">
@@ -355,7 +355,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             .attr("class", "tooltip")
             .style("opacity", 0);
 
-        d3.csv("bannedBooks.csv").then(function(data) {
+        d3.csv("bannedBooksThemesUpdated.csv").then(function(data) {
             data.forEach(function(d) {
                 d.Times = +d.Times;
                 d.NumStates = +d.NumStates;
@@ -376,6 +376,22 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
           ])
           .nice()
           .range([height, 0]);
+
+        const color = d3.scaleOrdinal()
+            // .domain(["Electronics", "Clothing", "Food"])
+            .range(['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e','#e6ab02','#a6761d']);//d3.schemeSet2
+
+        // svg.append("g")
+        //     .attr("class", "legendQuant")
+        //     .attr("transform", `translate(${100},${100})`);
+
+        // var legend = d3.legendColor()
+        //     .title("Type of Theme")
+        //     .scale(color)
+        //     .shapePadding(5);
+
+        // svg.select(".legendQuant")
+        //     .call(legend);
 
         // adding x axis
         svg.append("g")
@@ -416,11 +432,12 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             .append("circle")
             .attr("class", "point")
             .attr("cx", d => x(d.Times))
-            .attr("r", 6)
+            .attr("r", 7)
             .attr("cy", d => y(d.NumStates))
             .style("stroke-width", "0px")
-            .style("opacity", "0.5")
-            .style("fill", "#ae0c00")//;
+            .style("opacity", "0.6")
+            //.style("fill", "#ae0c00")//;
+            .attr('fill', d => color(d["Reason"]))
             .on("mouseover", function(event,d) {
                 div.transition()
                     .duration(200)
@@ -435,6 +452,18 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                   .duration(500)
                   .style("opacity", 0);
             });
+
+            const bubbleLegend = d3.legendColor()
+                .shape("circle")
+                .shapeRadius(7)
+                .shapePadding(8)
+                .scale(color)
+                .title("Themes");
+
+            const legend = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", `translate(${width-100}, 200)`)
+                .call(bubbleLegend);
 
         });
         }
@@ -569,17 +598,6 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                 .attr("height", containerHeight)
                 .append("g")
                 .attr("transform", `translate(${margins.left},${margins.top})`);
-
-            // const margin = { top: 10, right: 160, bottom: 10, left: 10 };
-            // const width = 760 - margin.left - margin.right;
-            // const height = 400 - margin.top - margin.bottom;
-
-            // const svg = d3.select("#treemap")
-            //     .append("svg")
-            //     .attr("width", width + margin.left + margin.right)
-            //     .attr("height", height + margin.top + margin.bottom)
-            //     .append("g")
-            //     .attr("transform", `translate(${margin.left},${margin.top})`);
 
             // Color scale for categories using ColorBrewer scheme
             const color = d3.scaleOrdinal()

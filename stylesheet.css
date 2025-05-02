@@ -1,6 +1,7 @@
 body {
     margin: 20px;
-    background-color: #000144;
+    /* background-color: #000144; */
+    background-color: #d20cff;
 }
 h1 {
     color: #ffffff;
@@ -104,6 +105,12 @@ h1 {
 .axis-x .tick line,
 .axis-y .tick line {
     stroke: #ccc;
+}
+
+.axis-x,
+.axis-y {
+    /* stroke: #ccc; */
+    fill: red;
 }
 
 .axis text {
