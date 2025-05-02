@@ -1,7 +1,7 @@
 body {
     margin: 20px;
-    /* background-color: #000144; */
-    background-color: #d20cff;
+    background-color: #000144;
+    /* background-color: #d20cff; */
 }
 h1 {
     color: #ffffff;
@@ -107,8 +107,8 @@ h1 {
     stroke: #ccc;
 }
 
-.axis-x,
-.axis-y {
+.axis-x .tick,
+.axis-y .tick {
     /* stroke: #ccc; */
     fill: red;
 }
