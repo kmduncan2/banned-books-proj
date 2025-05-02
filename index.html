@@ -184,6 +184,17 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             ]
         };
 
+        function jitter(){
+            let i = Math.random()*10;
+            if (i <= 5) {
+                j = -2;
+            } else {
+                j = 2;
+            }
+            return Math.random() * j;
+
+        }
+
         // BAR CHART
         function renderDonutChart() {
             const containerWidth = 900;
@@ -393,19 +404,6 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             .domain(["Sexual Content & Profantiy", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness", "Drugs & Alcohol", "Religion & Politics"])
             .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e','#e6ab02','#a6761d']);//d3.schemeSet2
 
-        console.log(Math.random())
-        // svg.append("g")
-        //     .attr("class", "legendQuant")
-        //     .attr("transform", `translate(${100},${100})`);
-
-        // var legend = d3.legendColor()
-        //     .title("Type of Theme")
-        //     .scale(color)
-        //     .shapePadding(5);
-
-        // svg.select(".legendQuant")
-        //     .call(legend);
-
         // adding x axis
         svg.append("g")
             .attr("class", "axis axis-x")
@@ -452,7 +450,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             .attr("class", "point")
             .attr("cx", d => x(d.Times))
             .attr("r", 7)
-            .attr("cy", d => y(d.NumStates) + Math.random() + Math.random()*2)
+            .attr("cy", d => y(d.NumStates) + jitter())//Math.random() + Math.random()*2
             .style("stroke-width", "0px")
             .style("opacity", "0.6")
             //.style("fill", "#ae0c00")//;
