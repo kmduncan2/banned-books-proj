@@ -339,8 +339,8 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
         // SCATTERPLOT
         function renderScatterplot() {
         const containerWidth = 900;
-        const containerHeight = 500;
-        const margins = { top: 20, right: 150, bottom: 50, left: 50 };
+        const containerHeight = 550;
+        const margins = { top: 20, right: 150, bottom: 100, left: 60 };
         const width = containerWidth - margins.left - margins.right;
         const height = containerHeight - margins.top - margins.bottom;
 
@@ -397,31 +397,37 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
         svg.append("g")
             .attr("class", "axis axis-x")
             .attr("transform", `translate(0, ${height})`)
-            .call(d3.axisBottom(x).ticks(10));
+            .call(d3.axisBottom(x).ticks(10))
+            .selectAll("text")
+            .style("font-size", "11pt");
 
         // adding y axis
         svg.append("g")
             .attr("class", "axis axis-y")
-            .call(d3.axisLeft(y).ticks(5));
+            .call(d3.axisLeft(y).ticks(5))
+            .selectAll("text")
+            .style("font-size", "11pt");
 
         svg.append("text")
             .attr("class", "axes")
             .attr("x", width/2)
-            .attr("y", 475)
+            .attr("y", 485)
             .attr("text-anchor", "middle")
+            .style("font-size", "13pt")
             .text("Times Banned");
 
         svg.append("text")
             .attr("class", "axes")
             .attr("x", height/-2)
-            .attr("y", -35)
+            .attr("y", -45)
             .attr("transform", "rotate(-90)")
             .attr("text-anchor", "middle")
+            .style("font-size", "13pt")
             .text("Number of States Banned In");
 
         svg.append("text")
             .attr("x", 50)
-            .attr("y", height + 50)
+            .attr("y", height + 80)
             .attr("text-anchor", "middle")
             .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
 
@@ -462,7 +468,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
 
             const legend = svg.append("g")
                 .attr("class", "legend")
-                .attr("transform", `translate(${width-100}, 200)`)
+                .attr("transform", `translate(${width-80}, 200)`)
                 .call(bubbleLegend);
 
         });

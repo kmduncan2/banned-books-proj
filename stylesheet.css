@@ -91,9 +91,9 @@ h1 {
             stroke: #000;
             shape-rendering: crispEdges;
         } */
-.axes {
+/* .axes {
     font-size: 14px;
-}
+} */
 
 .axis-x path,
 .axis-y path {
@@ -105,12 +105,6 @@ h1 {
 .axis-x .tick line,
 .axis-y .tick line {
     stroke: #ccc;
-}
-
-.axis-x .tick,
-.axis-y .tick {
-    /* stroke: #ccc; */
-    fill: red;
 }
 
 .axis text {
