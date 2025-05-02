@@ -83,10 +83,10 @@
                 What are they censoring? 
              </p>
         </div>
-        <div class="chart-container">
+        <!-- <div class="chart-container">
             <h2 class="chart-title">Themes of Books Banned in 2022-2023</h2>
             <div id="bar-chart"></div>
-        </div>
+        </div> -->
         <div class="chart-container">
             <h2 class="chart-title">Themes of Books Banned in 2022-2023</h2>
             <div id="treemap"></div>
@@ -148,26 +148,37 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             name: "Themes",
             children: [
                 {
-                    name: "Violence and/or Sex",
+                    name: "Sexual Content & Profantiy",
                     children: [
-                        { name: "Violence & Physical Abuse", value: 385 },
+                        // { name: "Violence & Physical Abuse", value: 385 },
                         { name: "Sexual Content", value: 211 },
                         { name: "Teen Pregnancy/Abortion/Sexual Assult", value: 150 }
                     ]
                 },
                 {
-                    name: "Mental Health",
+                    name: "Violence & Abuse",
+                    children: [
+                        { name: "Violence & Physical Abuse", value: 385 }
+                    ]
+                },
+                {
+                    name: "Death & Illness",
                     children: [
                         { name: "Health & Wellbeing for Students", value: 331 },
                         { name: "Grief/Death", value: 264 }
                     ]
                 },
                 {
-                    name: "Identity",
+                    name: "Sexuality/Gender",
                     children: [
-                        { name: "Race/Racism", value: 260 },
                         { name: "LGBTQ+", value: 229 },
                         { name: "Transgender", value: 68 }
+                    ]
+                },
+                {
+                    name: "Race/Racism",
+                    children: [
+                        { name: "Race/Racism", value: 260 }
                     ]
                 }
             ]
@@ -379,8 +390,10 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
 
         const color = d3.scaleOrdinal()
             // .domain(["Electronics", "Clothing", "Food"])
-            .range(['#1b9e77','#d95f02','#7570b3','#e7298a','#66a61e','#e6ab02','#a6761d']);//d3.schemeSet2
+            .domain(["Sexual Content & Profantiy", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness", "Drugs & Alcohol", "Religion & Politics"])
+            .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e','#e6ab02','#a6761d']);//d3.schemeSet2
 
+        console.log(Math.random())
         // svg.append("g")
         //     .attr("class", "legendQuant")
         //     .attr("transform", `translate(${100},${100})`);
@@ -439,7 +452,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             .attr("class", "point")
             .attr("cx", d => x(d.Times))
             .attr("r", 7)
-            .attr("cy", d => y(d.NumStates))
+            .attr("cy", d => y(d.NumStates) + Math.random() + Math.random()*2)
             .style("stroke-width", "0px")
             .style("opacity", "0.6")
             //.style("fill", "#ae0c00")//;
@@ -608,7 +621,9 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             // Color scale for categories using ColorBrewer scheme
             const color = d3.scaleOrdinal()
                 // .domain(["Electronics", "Clothing", "Food"])
-                .range(d3.schemeSet2);
+                // .range(d3.schemeSet2);
+                .domain(["Sexual Content & Profantiy", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness"])
+                .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e']);
 
             // Hierarchical data processing
             const root = d3.hierarchy(treemapData)
@@ -676,7 +691,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
         // Render all charts
         renderDonutChart();
         renderScatterplot();
-        renderBarChart();
+        //renderBarChart();
         renderDonutChart2();
         renderTreemap();
     </script>
