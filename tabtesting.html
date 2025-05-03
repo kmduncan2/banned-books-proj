@@ -100,57 +100,61 @@ body {font-family: Arial;}
             <div id="scatterplot"></div>
         
     </div>
-<!-- </div> -->
-
-<div id="Sexual" class = "tabcontent">
-    <!-- <div class="chart-container"> -->
-        <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
-        <div id="scatterplot-mature"></div>
-    <!-- </div> -->
 </div>
 
-<div id="Violence" class = "tabcontent">
-    <!-- <div class="chart-container"> -->
-        <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
-        <div id="scatterplot-violence"></div>
-    <!-- </div> -->
+<div class="chart-container">
+    <div id="Sexual" class = "tabcontent">
+            <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
+            <div id="scatterplot-mature"></div>
+    </div>
 </div>
 
-<div id="Race" class = "tabcontent">
-    <!-- <div class="chart-container"> -->
+<div class="chart-container">
+    <div id="Violence" class = "tabcontent">
+            <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
+            <div id="scatterplot-violence"></div>
+        
+    </div>
+</div>
+
+<div class="chart-container">
+    <div id="Race" class = "tabcontent">
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-race"></div>
-    <!-- </div> -->
+    </div>
 </div>
 
-<div id="Sexuality" class = "tabcontent">
-    <!-- <div class="chart-container"> -->
+<div class="chart-container">
+    <div id="Sexuality" class = "tabcontent">
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-sexuality"></div>
-    <!-- </div> -->
+    </div>
 </div>
 
-<div id="Death" class = "tabcontent">
-    <!-- <div class="chart-container"> -->
+<div class="chart-container">
+    <div id="Death" class = "tabcontent">
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-death"></div>
     <!-- </div> -->
+    </div> 
 </div>
 
-<div id="Drugs" class = "tabcontent">
-    <!-- <div class="chart-container"> -->
+<div class="chart-container">
+    <div id="Drugs" class = "tabcontent">
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-drugs"></div>
     <!-- </div> -->
+    </div>
 </div>
 
-<div id="Religion" class = "tabcontent">
-    <!-- <div class="chart-container"> -->
+<div class="chart-container">
+    <div id="Religion" class = "tabcontent">
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-religion"></div>
     <!-- </div> -->
+    </div>
 </div>
-</div>
+<!-- </div> -->
 
 
 <script>
@@ -158,6 +162,14 @@ body {font-family: Arial;}
 let thisTheme = "";
 let themeCont = "";
 let thisColor = "";
+let overview = false;
+let mature = false;
+let violence = false;
+let race = false;
+let sexuality = false;
+let death = false;
+let drugs = false;
+let religion = false;
 
 function openTheme(evt, cityName) {
   var i, tabcontent, tablinks;
@@ -175,44 +187,75 @@ function openTheme(evt, cityName) {
   console.log(cityName)
 
   if (cityName == "Overview") {
-    thisTheme = "Default";
-    themeCont = "#scatterplot";
-    renderScatterplot();
+    if (!overview){
+        thisTheme = "Default";
+        themeCont = "#scatterplot";
+        renderScatterplot();
+        overview = true;
+    }
   } else if (cityName == "Sexual"){
-    thisTheme = "Sexual Content & Profanity";
-    themeCont = "#scatterplot-mature";
-    thisColor = "#1b9c9e";
-    renderScatterplotSpecific();
+    if (!mature){
+        thisTheme = "Sexual Content & Profanity";
+        themeCont = "#scatterplot-mature";
+        thisColor = "#1b9c9e";
+        renderScatterplotSpecific();  
+        mature = true; 
+    }
+    
   } else if (cityName == "Violence") {
-    thisTheme = "Violence & Abuse";
-    themeCont = "#scatterplot-violence";
-    thisColor = "#d95f02";
-    renderScatterplotSpecific();
+    if (!violence){
+        thisTheme = "Violence & Abuse";
+        themeCont = "#scatterplot-violence";
+        thisColor = "#d95f02";
+        renderScatterplotSpecific();   
+        violence = true; 
+    }
+    
   } else if (cityName == "Race") {
-    thisTheme = "Race/Racism";
-    themeCont = "#scatterplot-race";
-    thisColor = "#7570b3";
-    renderScatterplotSpecific();
+    if (!race) {
+        thisTheme = "Race/Racism";
+        themeCont = "#scatterplot-race";
+        thisColor = "#7570b3";
+        renderScatterplotSpecific();
+        race = true;
+    }
+    
   } else if (cityName == "Sexuality") {
-    thisTheme = "Sexuality/Gender";
-    themeCont = "#scatterplot-sexuality";
-    thisColor = "#e7298a";
-    renderScatterplotSpecific();
+    if (!sexuality){
+        thisTheme = "Sexuality/Gender";
+        themeCont = "#scatterplot-sexuality";
+        thisColor = "#e7298a";
+        renderScatterplotSpecific();
+        sexuality = true;
+    }
+
   } else if (cityName == "Death") {
-    thisTheme = "Death & Illness";
-    themeCont = "#scatterplot-death";
-    thisColor = "#66a61e";
-    renderScatterplotSpecific();
+    if (!death) {
+        thisTheme = "Death & Illness";
+        themeCont = "#scatterplot-death";
+        thisColor = "#66a61e";
+        renderScatterplotSpecific();
+        death = true;
+    }
+    
   } else if (cityName == "Drugs") {
-    thisTheme = "Drugs & Alcohol";
-    themeCont = "#scatterplot-drugs";
-    thisColor = "#e6ab02";
-    renderScatterplotSpecific();
+    if (!drugs) {
+        thisTheme = "Drugs & Alcohol";
+        themeCont = "#scatterplot-drugs";
+        thisColor = "#e6ab02";
+        renderScatterplotSpecific();
+        drugs = true;
+    }
+    
   } else if (cityName == "Religion") {
-    thisTheme = "Religion & Politics";
-    themeCont = "#scatterplot-religion";
-    thisColor = "#a6761d";
-    renderScatterplotSpecific();
+    if (!religion){
+        thisTheme = "Religion & Politics";
+        themeCont = "#scatterplot-religion";
+        thisColor = "#a6761d";
+        renderScatterplotSpecific();
+        religion = true;
+    }
+    
   }
    console.log(thisTheme);
    console.log(themeCont);
@@ -403,7 +446,7 @@ function renderScatterplot() {
         const color = d3.scaleOrdinal()
             // .domain(["Electronics", "Clothing", "Food"])
             .domain([thisTheme, "Other"])
-            .range([thisColor,'#ccc']);//d3.schemeSet2
+            .range([thisColor,'rgba(124, 124, 124, 0.25)']);//d3.schemeSet2
 
         // adding x axis
         svg.append("g")
@@ -493,7 +536,7 @@ function renderScatterplot() {
             const bubbleLegend = d3.legendColor()
                 .shape("circle")
                 .shapeRadius(7)
-                .shapePadding(20)
+                .shapePadding(15)
                 .scale(color)
                 .title("Themes");
 
