@@ -459,7 +459,9 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                     .duration(200)
                     .style("opacity", .9);
                 div.html(d.Title + " by " + d.Author + "<br/> Themes: " + d.Reason + "<br/>" + d.SecondReason + "<br/>" + d.ThirdReason)
-                      .attr("class", "tooltip")
+                     .attr("class", "tooltip")
+                     .style("text-align", "left")
+                     .style("height", "auto")
                      .style("left", (event.pageX + 10) + "px")
                      .style("top", (event.pageY + 10) + "px");
                 })
