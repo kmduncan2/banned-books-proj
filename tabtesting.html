@@ -94,61 +94,62 @@ body {font-family: Arial;}
   <p>Tokyo is the capital of Japan.</p>
 </div> -->
 
-<div class="chart-container"></div>
+<div class="chart-container"><!-- </div> -->
     <div id="Overview" class = "tabcontent">
             <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
             <div id="scatterplot"></div>
         
     </div>
-</div>
+<!-- </div> -->
 
 <div id="Sexual" class = "tabcontent">
-    <div class="chart-container">
+    <!-- <div class="chart-container"> -->
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-mature"></div>
-    </div>
+    <!-- </div> -->
 </div>
 
 <div id="Violence" class = "tabcontent">
-    <div class="chart-container">
+    <!-- <div class="chart-container"> -->
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-violence"></div>
-    </div>
+    <!-- </div> -->
 </div>
 
 <div id="Race" class = "tabcontent">
-    <div class="chart-container">
+    <!-- <div class="chart-container"> -->
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-race"></div>
-    </div>
+    <!-- </div> -->
 </div>
 
 <div id="Sexuality" class = "tabcontent">
-    <div class="chart-container">
+    <!-- <div class="chart-container"> -->
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-sexuality"></div>
-    </div>
+    <!-- </div> -->
 </div>
 
 <div id="Death" class = "tabcontent">
-    <div class="chart-container">
+    <!-- <div class="chart-container"> -->
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-death"></div>
-    </div>
+    <!-- </div> -->
 </div>
 
 <div id="Drugs" class = "tabcontent">
-    <div class="chart-container">
+    <!-- <div class="chart-container"> -->
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-drugs"></div>
-    </div>
+    <!-- </div> -->
 </div>
 
 <div id="Religion" class = "tabcontent">
-    <div class="chart-container">
+    <!-- <div class="chart-container"> -->
         <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
         <div id="scatterplot-religion"></div>
-    </div>
+    <!-- </div> -->
+</div>
 </div>
 
 
@@ -185,24 +186,36 @@ function openTheme(evt, cityName) {
   } else if (cityName == "Violence") {
     thisTheme = "Violence & Abuse";
     themeCont = "#scatterplot-violence";
+    thisColor = "#d95f02";
+    renderScatterplotSpecific();
   } else if (cityName == "Race") {
     thisTheme = "Race/Racism";
     themeCont = "#scatterplot-race";
+    thisColor = "#7570b3";
+    renderScatterplotSpecific();
   } else if (cityName == "Sexuality") {
     thisTheme = "Sexuality/Gender";
     themeCont = "#scatterplot-sexuality";
+    thisColor = "#e7298a";
+    renderScatterplotSpecific();
   } else if (cityName == "Death") {
     thisTheme = "Death & Illness";
     themeCont = "#scatterplot-death";
+    thisColor = "#66a61e";
+    renderScatterplotSpecific();
   } else if (cityName == "Drugs") {
     thisTheme = "Drugs & Alcohol";
     themeCont = "#scatterplot-drugs";
+    thisColor = "#e6ab02";
+    renderScatterplotSpecific();
   } else if (cityName == "Religion") {
     thisTheme = "Religion & Politics";
     themeCont = "#scatterplot-religion";
+    thisColor = "#a6761d";
+    renderScatterplotSpecific();
   }
-//   console.log(thisTheme);
-//   console.log(themeCont);
+   console.log(thisTheme);
+   console.log(themeCont);
 }
 
 // Get the element with id="defaultOpen" and click on it
@@ -445,7 +458,7 @@ function renderScatterplot() {
             // .attr('fill', d => color(d["Reason"]))
             .attr("fill", function(d) { 
                 //let theme = "Other";
-                //console.log(d.Reason);
+                console.log(d.Reason);
                 console.log(d.Reason == thisTheme)
                 if (d.Reason == thisTheme) {
                     //console.log("true");
