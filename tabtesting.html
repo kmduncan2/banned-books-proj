@@ -156,7 +156,7 @@ body {font-family: Arial;}
 
 let thisTheme = "";
 let themeCont = "";
-// let thisColor = "";
+let thisColor = "";
 
 function openTheme(evt, cityName) {
   var i, tabcontent, tablinks;
@@ -180,6 +180,7 @@ function openTheme(evt, cityName) {
   } else if (cityName == "Sexual"){
     thisTheme = "Sexual Content & Profanity";
     themeCont = "#scatterplot-mature";
+    thisColor = "#1b9c9e";
     renderScatterplotSpecific();
   } else if (cityName == "Violence") {
     thisTheme = "Violence & Abuse";
@@ -389,7 +390,7 @@ function renderScatterplot() {
         const color = d3.scaleOrdinal()
             // .domain(["Electronics", "Clothing", "Food"])
             .domain([thisTheme, "Other"])
-            .range(["#1b9c9e",'#ccc']);//d3.schemeSet2
+            .range([thisColor,'#ccc']);//d3.schemeSet2
 
         // adding x axis
         svg.append("g")
