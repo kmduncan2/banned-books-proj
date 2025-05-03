@@ -4,15 +4,14 @@
     <link rel="stylesheet" href="stylesheet.css" />
     <title>Banned Books</title>
 </head>
+<!-- used Color Brewer and Viz Pallette for chart colors -->
 <body>
     <div class="container">
-        <div class="heading">
-            <!--<div class="headimg"> </div>  img src="nypubliclibrarybookimg.png" style="width:110%;height:600px;"> --> 
+        <div class="heading"> 
             <h1 class="heading-text">5,813 books were challenged in the US in 2024</h1>
     
         </div>
         <div class="text-container">
-            <!-- <h2 class="section-title">Story</h2> -->
              <p class="section-text">
                 Over the last 5 years, book bans have become more prevalent in the United States. 
                 After the COVID-19 pandemic and election of former president Biden, there was a drastic 
@@ -459,7 +458,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                 div.transition()
                     .duration(200)
                     .style("opacity", .9);
-                div.html(d.Title + " by " + d.Author)
+                div.html(d.Title + " by " + d.Author + "<br/> Themes: " + d.Reason + "<br/>" + d.SecondReason + "<br/>" + d.ThirdReason)
                       .attr("class", "tooltip")
                      .style("left", (event.pageX + 10) + "px")
                      .style("top", (event.pageY + 10) + "px");

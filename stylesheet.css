@@ -131,12 +131,12 @@ h1 {
 
 .tooltip {
     position: absolute;
-    text-align: center;
+    text-align: left;
     display: flex;
     justify-content: center;
     align-items: center;
     width: auto;
-    height: 50px;
+    height: auto;
     padding: 2px;
     background: rgb(255, 255, 255);
     border-style: solid;
