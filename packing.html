@@ -29,84 +29,106 @@ body {font-family: Arial;}
     <div id="chart-container"></div>
 circle
 <script>
-        // set the dimensions and margins of the graph
-    const width = 450
-    const height = 450
+    const containerWidth = 1000;
+    const containerHeight = 700;
+    const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+    const width = containerWidth - margin.left - margin.right;
+    const height = containerHeight - margin.top - margin.bottom;
+    const radius = Math.min(width, height) / 2.5;
+    const banner = new Map();
 
-    // append the svg object to the body of the page
     const svg = d3.select("#chart-container")
-    .append("svg")
-        .attr("width", 450)
-        .attr("height", 450)
-
-    // create dummy data -> just one element per circle
-    const data = [{ "name": "A" }, { "name": "B" }, { "name": "C" }, { "name": "D" }, { "name": "E" }, { "name": "F" }, { "name": "G" }, { "name": "H" }]
+        .append("svg")
+        .attr("width", containerWidth)
+        .attr("height", containerHeight)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
 
     var div = d3.select("body").append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
 
-    const color = d3.scaleOrdinal()
-        .domain(["A", "B", "C", "D", "E", "F", "G", "H"])
-        .range(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00']);
-
-    svg.append("g")
-        .attr("class", "legendQuant")
-        .attr("transform", `translate(${width-50},${height/2 - 100})`);
-
-    var legend = d3.legendColor()
-        .title("Places")
-        .scale(color)
-        .shapePadding(5);
-
-    svg.select(".legendQuant")
-        .call(legend);
-
-    
-    // Initialize the circle: all located at the center of the svg area
-    const node = svg.append("g")
-    .selectAll("circle")
-    .data(data)
-    .join("circle")
-        .attr("r", 25)
-        .attr("cx", width / 2)
-        .attr("cy", height / 2)
-        .style("fill", d => color(d.name))//"#69b3a2"
-        .style("fill-opacity", 0.8)
-        .attr("stroke", "black")
-        .style("stroke-width", 2)
-        .on("mouseover", function(event,d) {
-                div.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                div.html(d["name"])
-                     .attr("class", "tooltip")
-                     .style("text-align", "left")
-                     .style("height", "auto")
-                     .style("left", (event.pageX + 10) + "px")
-                     .style("top", (event.pageY + 10) + "px");
-                })
-            .on("mouseout", function(d) {
-                div.transition()
-                  .duration(500)
-                  .style("opacity", 0);
-            });
-
-    // Features of the forces applied to the nodes:
-    const simulation = d3.forceSimulation()
-        .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-        .force("charge", d3.forceManyBody().strength(0.5)) // Nodes are attracted one each other of value is > 0
-        .force("collide", d3.forceCollide().strength(.01).radius(30).iterations(1)) // Force that avoids circle overlapping
-
-    // Apply these forces to the nodes and update their positions.
-    // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-    simulation
-        .nodes(data)
-        .on("tick", function(d){
-        node
-            .attr("cx", d => d.x)
-            .attr("cy", d => d.y)
+    d3.csv("where-challenged.csv").then(function(data) {
+        data.forEach(function(d) {
+            d.percentage = +d.percentage;
+            banner.set(d.place, d.percentage);
         });
+
+        var div = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+        const color = d3.scaleOrdinal()
+            .domain(["Public Libraries", "School Libraries", "Schools", "Higher Education/Other"])
+            .range(['#1f78b4','#33a02c','#e31a1c','#ff7f00']);
+
+        const r = d3.scaleLinear()
+          .domain([
+            d3.min(data, (d) => d.percentage),
+            d3.max(data, (d) => d.percentage),
+          ])
+          .range([10, 100]);
+
+        svg.append("g")
+            .attr("class", "legendQuant")
+            .attr("transform", `translate(${width-150},${height/2 - 100})`);
+
+        var legend = d3.legendColor()
+            .title("Places")
+            .scale(color)
+            .shapePadding(5);
+
+        svg.select(".legendQuant")
+            .call(legend);
+
+        
+        // Initialize the circle: all located at the center of the svg area
+        const node = svg.append("g")
+        .selectAll("circle")
+        .data(data)
+        .join("circle")
+            .attr("r", d => r(d.percentage))
+            .attr("cx", width / 2)
+            .attr("cy", height / 2)
+            .style("fill", d => color(d.place))//"#69b3a2"
+            .style("fill-opacity", 0.8)
+            .attr("stroke", "black")
+            .style("stroke-width", 2)
+            .on("mouseover", function(event,d) {
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    div.html(d.place + ": " + d.percentage + "%")
+                        .attr("class", "tooltip")
+                        .style("text-align", "left")
+                        .style("height", "auto")
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY + 10) + "px");
+                    })
+                .on("mouseout", function(d) {
+                    div.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+                });
+
+        // Features of the forces applied to the nodes:
+        const simulation = d3.forceSimulation()
+            .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
+            .force("charge", d3.forceManyBody().strength(0.5)) // Nodes are attracted one each other of value is > 0
+            .force("collide", d3.forceCollide().strength(.01).radius(80).iterations(1)) // Force that avoids circle overlapping
+
+        // Apply these forces to the nodes and update their positions.
+        // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
+        simulation
+            .nodes(data)
+            .on("tick", function(d){
+            node
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y)
+                .attr("r", d => r(d.percentage))
+            });
+                
+    });
 </script>
    
 </body>
