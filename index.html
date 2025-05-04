@@ -95,9 +95,75 @@
                 words 
              </p>
         </div>
-        <div class="chart-container">
-            <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
-            <div id="scatterplot"></div>
+        <div class="chart-container" style="height: 700px;">
+            <div class="tab">
+                <button class="tablinks" onclick="openTheme(event, 'Overview')" id="defaultOpen">Overview</button>
+                <button class="tablinks" onclick="openTheme(event, 'Sexual')">Sexual Content & Profantiy</button>
+                <button class="tablinks" onclick="openTheme(event, 'Violence')">Violence & Abuse</button>
+                <button class="tablinks" onclick="openTheme(event, 'Race')">Race/Racism</button>
+                <button class="tablinks" onclick="openTheme(event, 'Sexuality')">Sexuality/Gender</button>
+                <button class="tablinks" onclick="openTheme(event, 'Death')">Death & Illness</button>
+                <button class="tablinks" onclick="openTheme(event, 'Drugs')">Drugs & Alcohol</button>
+                <button class="tablinks" onclick="openTheme(event, 'Religion')">Religion & Politics</button>
+            </div>
+
+            <div class="tab-container">
+                <div id="Overview" class = "tabcontent">
+                        <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
+                        <div id="scatterplot"></div>
+                    
+                </div>
+            </div>
+
+            <div class="tab-container">
+                <div id="Sexual" class = "tabcontent">
+                        <h2 class="chart-title">Sexual Content & Profanity</h2>
+                        <div id="scatterplot-mature"></div>
+                </div>
+            </div>
+
+            <div class="tab-container">
+                <div id="Violence" class = "tabcontent">
+                        <h2 class="chart-title">Violence & Abuse</h2>
+                        <div id="scatterplot-violence"></div>
+                    
+                </div>
+            </div>
+
+            <div class="tab-container">
+                <div id="Race" class = "tabcontent">
+                    <h2 class="chart-title">Race/Racism</h2>
+                    <div id="scatterplot-race"></div>
+                </div>
+            </div>
+
+            <div class="tab-container">
+                <div id="Sexuality" class = "tabcontent">
+                    <h2 class="chart-title">Sexuality/Gender</h2>
+                    <div id="scatterplot-sexuality"></div>
+                </div>
+            </div>
+
+            <div class="tab-container">
+                <div id="Death" class = "tabcontent">
+                    <h2 class="chart-title">Death & Illness</h2>
+                    <div id="scatterplot-death"></div>
+                </div> 
+            </div>
+
+            <div class="tab-container">
+                <div id="Drugs" class = "tabcontent">
+                    <h2 class="chart-title">Drugs & Alcohol</h2>
+                    <div id="scatterplot-drugs"></div>
+                </div>
+            </div>
+
+            <div class="tab-container">
+                <div id="Religion" class = "tabcontent">
+                    <h2 class="chart-title">Religion & Politics</h2>
+                    <div id="scatterplot-religion"></div>
+                </div>
+            </div>
         </div>
         <div class="text-container">
             <a href="tabtesting.html">
@@ -131,6 +197,9 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <script>
+        const containerWidth = 1000;
+        const containerHeight = 600;
+
         // Common tooltip setup
         const tooltip = d3.select("#tooltip");
         
@@ -152,7 +221,6 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                 {
                     name: "Sexual Content & Profantiy",
                     children: [
-                        // { name: "Violence & Physical Abuse", value: 385 },
                         { name: "Sexual Content", value: 211 },
                         { name: "Teen Pregnancy/Abortion/Sexual Assult", value: 150 }
                     ]
@@ -197,10 +265,381 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
 
         }
 
+        let thisTheme = "";
+        let themeCont = "";
+        let thisColor = "";
+        let overview = false;
+        let mature = false;
+        let violence = false;
+        let race = false;
+        let sexuality = false;
+        let death = false;
+        let drugs = false;
+        let religion = false;
+
+        function openTheme(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+            console.log(cityName)
+
+            if (cityName == "Overview") {
+                if (!overview){
+                    thisTheme = "Default";
+                    themeCont = "#scatterplot";
+                    renderScatterplot();
+                    overview = true;
+                }
+            } else if (cityName == "Sexual"){
+                if (!mature){
+                    thisTheme = "Sexual Content & Profanity";
+                    themeCont = "#scatterplot-mature";
+                    thisColor = "#1b9c9e";
+                    renderScatterplotSpecific();  
+                    mature = true; 
+                }
+                
+            } else if (cityName == "Violence") {
+                if (!violence){
+                    thisTheme = "Violence & Abuse";
+                    themeCont = "#scatterplot-violence";
+                    thisColor = "#d95f02";
+                    renderScatterplotSpecific();   
+                    violence = true; 
+                }
+                
+            } else if (cityName == "Race") {
+                if (!race) {
+                    thisTheme = "Race/Racism";
+                    themeCont = "#scatterplot-race";
+                    thisColor = "#7570b3";
+                    renderScatterplotSpecific();
+                    race = true;
+                }
+                
+            } else if (cityName == "Sexuality") {
+                if (!sexuality){
+                    thisTheme = "Sexuality/Gender";
+                    themeCont = "#scatterplot-sexuality";
+                    thisColor = "#e7298a";
+                    renderScatterplotSpecific();
+                    sexuality = true;
+                }
+
+            } else if (cityName == "Death") {
+                if (!death) {
+                    thisTheme = "Death & Illness";
+                    themeCont = "#scatterplot-death";
+                    thisColor = "#66a61e";
+                    renderScatterplotSpecific();
+                    death = true;
+                }
+                
+            } else if (cityName == "Drugs") {
+                if (!drugs) {
+                    thisTheme = "Drugs & Alcohol";
+                    themeCont = "#scatterplot-drugs";
+                    thisColor = "#e6ab02";
+                    renderScatterplotSpecific();
+                    drugs = true;
+                }
+                
+            } else if (cityName == "Religion") {
+                if (!religion){
+                    thisTheme = "Religion & Politics";
+                    themeCont = "#scatterplot-religion";
+                    thisColor = "#a6761d";
+                    renderScatterplotSpecific();
+                    religion = true;
+                }
+                
+            }
+            // console.log(thisTheme);
+            // console.log(themeCont);
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+
+        function renderScatterplot() {
+            const containerWidthScatter = 874;
+            const containerHeightScatter = 520;
+            const margins = { top: 20, right: 90, bottom: 100, left: 60 };
+            const width = containerWidthScatter - margins.left - margins.right;
+            const height = containerHeightScatter - margins.top - margins.bottom;
+
+            const svg = d3.select(themeCont)
+                .append("svg")
+                .attr("width", containerWidthScatter)
+                .attr("height", containerHeightScatter)
+                .append("g")
+                .attr("transform", `translate(${margins.left},${margins.top})`);
+
+            var div = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+
+            d3.csv("bannedBooksThemesUpdated.csv").then(function(data) {
+                data.forEach(function(d) {
+                    d.Times = +d.Times;
+                    d.NumStates = +d.NumStates;
+                });
+
+                // scale for x axis
+                const x = d3
+                    .scaleLinear()
+                    .domain([0, d3.max(data.map((d) => d.Times))])
+                    .range([0, width]);
+
+                // scale for y axis
+                const y = d3
+                    .scaleLinear()
+                    .domain([
+                        0,
+                        d3.max(data, (d) => d.NumStates),
+                    ])
+                    .nice()
+                    .range([height, 0]);
+
+                const color = d3.scaleOrdinal()
+                    // .domain(["Electronics", "Clothing", "Food"])
+                    .domain(["Sexual Content & Profanity", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness", "Drugs & Alcohol", "Religion & Politics"])
+                    .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e','#e6ab02','#a6761d']);//d3.schemeSet2
+
+                // adding x axis
+                svg.append("g")
+                    .attr("class", "axis axis-x")
+                    .attr("transform", `translate(0, ${height})`)
+                    .call(d3.axisBottom(x).ticks(10))
+                    .selectAll("text")
+                    .style("font-size", "11pt");
+
+                // adding y axis
+                svg.append("g")
+                    .attr("class", "axis axis-y")
+                    .call(d3.axisLeft(y).ticks(5))
+                    .selectAll("text")
+                    .style("font-size", "11pt");
+
+                svg.append("text")
+                    .attr("class", "axes")
+                    .attr("x", width/2)
+                    .attr("y", 465)
+                    .attr("text-anchor", "middle")
+                    .style("font-size", "13pt")
+                    .text("Times Banned");
+
+                svg.append("text")
+                    .attr("class", "axes")
+                    .attr("x", height/-2)
+                    .attr("y", -45)
+                    .attr("transform", "rotate(-90)")
+                    .attr("text-anchor", "middle")
+                    .style("font-size", "13pt")
+                    .text("Number of States Banned In");
+
+                svg.append("text")
+                    .attr("x", 50)
+                    .attr("y", height + 80)
+                    .attr("text-anchor", "middle")
+                    .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
+
+                    // adding points
+                svg.selectAll(".point")
+                    .data(data)
+                    .enter()
+                    .append("circle")
+                    .attr("class", "point")
+                    .attr("cx", d => x(d.Times))
+                    .attr("r", 7)
+                    .attr("cy", d => y(d.NumStates) + jitter())//Math.random() + Math.random()*2
+                    .style("stroke-width", "0px")
+                    .style("opacity", "0.6")
+                    .attr('fill', d => color(d["Reason"]))
+                    .on("mouseover", function(event,d) {
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        div.html(d.Title + " by " + d.Author + "<br/> Themes: " + d.Reason + "<br/>" + d.SecondReason + "<br/>" + d.ThirdReason)
+                            .attr("class", "tooltip")
+                            .style("text-align", "left")
+                            .style("height", "auto")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY + 10) + "px");
+                        })
+                    .on("mouseout", function(d) {
+                        div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                    });
+
+                    const bubbleLegend = d3.legendColor()
+                        .shape("circle")
+                        .shapeRadius(7)
+                        .shapePadding(8)
+                        .scale(color)
+                        .title("Themes");
+
+                    const legend = svg.append("g")
+                        .attr("class", "legend")
+                        .attr("transform", `translate(${width-120}, 180)`)
+                        .style("font-size", "11pt")
+                        .call(bubbleLegend);
+
+            });
+        }
+
+        function renderScatterplotSpecific() {
+            const containerWidthScatter = 874;
+            const containerHeightScatter = 520;
+            const margins = { top: 20, right: 90, bottom: 100, left: 60 };
+            const width = containerWidthScatter - margins.left - margins.right;
+            const height = containerHeightScatter - margins.top - margins.bottom;
+
+            const svg = d3.select("#scatterplot-mature")
+                .append("svg")
+                .attr("width", containerWidthScatter)
+                .attr("height", containerHeightScatter)
+                .append("g")
+                .attr("transform", `translate(${margins.left},${margins.top})`);
+
+            var div = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+
+            d3.csv("bannedBooksThemesUpdated.csv").then(function(data) {
+                data.forEach(function(d) {
+                    d.Times = +d.Times;
+                    d.NumStates = +d.NumStates;
+                });
+
+                // scale for x axis
+                const x = d3
+                    .scaleLinear()
+                    .domain([0, d3.max(data.map((d) => d.Times))])
+                    .range([0, width]);
+
+                // scale for y axis
+                const y = d3
+                    .scaleLinear()
+                    .domain([
+                        0,
+                        d3.max(data, (d) => d.NumStates),
+                    ])
+                    .nice()
+                    .range([height, 0]);
+
+                const color = d3.scaleOrdinal()
+                    .domain([thisTheme, "Other"])
+                    .range([thisColor,'rgba(124, 124, 124, 0.25)']);
+
+                // adding x axis
+                svg.append("g")
+                    .attr("class", "axis axis-x")
+                    .attr("transform", `translate(0, ${height})`)
+                    .call(d3.axisBottom(x).ticks(10))
+                    .selectAll("text")
+                    .style("font-size", "11pt");
+
+                // adding y axis
+                svg.append("g")
+                    .attr("class", "axis axis-y")
+                    .call(d3.axisLeft(y).ticks(5))
+                    .selectAll("text")
+                    .style("font-size", "11pt");
+
+                svg.append("text")
+                    .attr("class", "axes")
+                    .attr("x", width/2)
+                    .attr("y", 465)
+                    .attr("text-anchor", "middle")
+                    .style("font-size", "13pt")
+                    .text("Times Banned");
+
+                svg.append("text")
+                    .attr("class", "axes")
+                    .attr("x", height/-2)
+                    .attr("y", -45)
+                    .attr("transform", "rotate(-90)")
+                    .attr("text-anchor", "middle")
+                    .style("font-size", "13pt")
+                    .text("Number of States Banned In");
+
+                svg.append("text")
+                    .attr("x", 50)
+                    .attr("y", height + 80)
+                    .attr("text-anchor", "middle")
+                    .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
+
+                // adding points
+                svg.selectAll(".point")
+                    .data(data)
+                    .enter()
+                    .append("circle")
+                    .attr("class", "point")
+                    .attr("cx", d => x(d.Times))
+                    .attr("r", 7)
+                    .attr("cy", d => y(d.NumStates) + jitter())
+                    .style("stroke-width", "0px")
+                    .style("opacity", "0.6")
+                    .attr("fill", function(d) {
+                        // console.log(d.Reason);
+                        // console.log(d.Reason == thisTheme)
+                        if (d.Reason == thisTheme) {
+                            return color(thisTheme)
+                        } else if (d.SecondReason == thisTheme){
+                            return color(thisTheme)
+                        } else if (d.ThirdReason == thisTheme) {
+                            return color(thisTheme)
+                        }
+                        return color("Other") 
+                    })
+                    .on("mouseover", function(event,d) {
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        div.html(d.Title + " by " + d.Author + "<br/> Themes: " + d.Reason + "<br/>" + d.SecondReason + "<br/>" + d.ThirdReason)
+                            .attr("class", "tooltip")
+                            .style("text-align", "left")
+                            .style("height", "auto")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY + 10) + "px");
+                    })
+                    .on("mouseout", function(d) {
+                        div.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                    });
+
+                    const bubbleLegend = d3.legendColor()
+                        .shape("circle")
+                        .shapeRadius(7)
+                        .shapePadding(10)
+                        .scale(color)
+                        .title("Themes");
+
+                    const legend = svg.append("g")
+                        .attr("class", "legend")
+                        .attr("transform", `translate(${width-120}, 180)`)
+                        .style("font-size", "11pt")
+                        .call(bubbleLegend);
+
+            });
+        }
+
         // BAR CHART
         function renderDonutChart() {
-            const containerWidth = 900;
-            const containerHeight = 600;
+            // const containerWidth = 900;
+            // const containerHeight = 600;
             const margin = { top: 50, right: 50, bottom: 50, left: 50 };
             const width = containerWidth - margin.left - margin.right;
             const height = containerHeight - margin.top - margin.bottom;
@@ -223,16 +662,16 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                     d.percentage = +d.percentage;
                     banner.set(d.place, d.percentage);
                 });
-                //console.log(banner);
+                
                 data = banner;
-                //console.log(data);
+
                 const color = d3.scaleOrdinal()
                 .domain(["Public Libraries", "School Libraries", "Schools", "Higher Education/Other"])
                 .range(['#1f78b4','#33a02c','#e31a1c','#fdbf6f']);
 
                 svg.append("g")
                     .attr("class", "legendQuant")
-                    .attr("transform", `translate(${470},${height/2 - 100})`);
+                    .attr("transform", `translate(${width-300},${height/2 - 100})`);
 
                 var legend = d3.legendColor()
                     .title("Places")
@@ -280,8 +719,8 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
         }
 
         function renderDonutChart2() {
-            const containerWidth = 900;
-            const containerHeight = 600;
+            // const containerWidth = 900;
+            // const containerHeight = 600;
             const margin = { top: 50, right: 50, bottom: 50, left: 50 };
             const width = containerWidth - margin.left - margin.right;
             const height = containerHeight - margin.top - margin.bottom;
@@ -313,7 +752,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
 
                 svg.append("g")
                     .attr("class", "legendQuant")
-                    .attr("transform", `translate(${470},${height/2 - 100})`);
+                    .attr("transform", `translate(${width-300},${height/2 - 100})`);
 
                 var legend = d3.legendColor()
                     .title("Advocates")
@@ -358,135 +797,6 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                         .duration(500)
                         .style("opacity", 0)});
             });
-        }
-
-        // SCATTERPLOT
-        function renderScatterplot() {
-        const containerWidth = 900;
-        const containerHeight = 550;
-        const margins = { top: 20, right: 150, bottom: 100, left: 60 };
-        const width = containerWidth - margins.left - margins.right;
-        const height = containerHeight - margins.top - margins.bottom;
-
-        const svg = d3.select("#scatterplot")
-            .append("svg")
-            .attr("width", containerWidth)
-            .attr("height", containerHeight)
-            .append("g")
-            .attr("transform", `translate(${margins.left},${margins.top})`);
-
-        var div = d3.select("body").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
-
-        d3.csv("bannedBooksThemesUpdated.csv").then(function(data) {
-            data.forEach(function(d) {
-                d.Times = +d.Times;
-                d.NumStates = +d.NumStates;
-            });
-
-        // scale for x axis
-        const x = d3
-          .scaleLinear()
-          .domain([0, d3.max(data.map((d) => d.Times))])
-          .range([0, width]);
-
-        // scale for y axis
-        const y = d3
-          .scaleLinear()
-          .domain([
-            0,
-            d3.max(data, (d) => d.NumStates),
-          ])
-          .nice()
-          .range([height, 0]);
-
-        const color = d3.scaleOrdinal()
-            // .domain(["Electronics", "Clothing", "Food"])
-            .domain(["Sexual Content & Profantiy", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness", "Drugs & Alcohol", "Religion & Politics"])
-            .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e','#e6ab02','#a6761d']);//d3.schemeSet2
-
-        // adding x axis
-        svg.append("g")
-            .attr("class", "axis axis-x")
-            .attr("transform", `translate(0, ${height})`)
-            .call(d3.axisBottom(x).ticks(10))
-            .selectAll("text")
-            .style("font-size", "11pt");
-
-        // adding y axis
-        svg.append("g")
-            .attr("class", "axis axis-y")
-            .call(d3.axisLeft(y).ticks(5))
-            .selectAll("text")
-            .style("font-size", "11pt");
-
-        svg.append("text")
-            .attr("class", "axes")
-            .attr("x", width/2)
-            .attr("y", 485)
-            .attr("text-anchor", "middle")
-            .style("font-size", "13pt")
-            .text("Times Banned");
-
-        svg.append("text")
-            .attr("class", "axes")
-            .attr("x", height/-2)
-            .attr("y", -45)
-            .attr("transform", "rotate(-90)")
-            .attr("text-anchor", "middle")
-            .style("font-size", "13pt")
-            .text("Number of States Banned In");
-
-        svg.append("text")
-            .attr("x", 50)
-            .attr("y", height + 80)
-            .attr("text-anchor", "middle")
-            .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
-
-            // adding points
-        svg.selectAll(".point")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("class", "point")
-            .attr("cx", d => x(d.Times))
-            .attr("r", 7)
-            .attr("cy", d => y(d.NumStates) + jitter())//Math.random() + Math.random()*2
-            .style("stroke-width", "0px")
-            .style("opacity", "0.6")
-            //.style("fill", "#ae0c00")//;
-            .attr('fill', d => color(d["Reason"]))
-            .on("mouseover", function(event,d) {
-                div.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                div.html(d.Title + " by " + d.Author + "<br/> Themes: " + d.Reason + "<br/>" + d.SecondReason + "<br/>" + d.ThirdReason)
-                     .attr("class", "tooltip")
-                     .style("text-align", "left")
-                     .style("height", "auto")
-                     .style("left", (event.pageX + 10) + "px")
-                     .style("top", (event.pageY + 10) + "px");
-                })
-            .on("mouseout", function(d) {
-                div.transition()
-                  .duration(500)
-                  .style("opacity", 0);
-            });
-
-            const bubbleLegend = d3.legendColor()
-                .shape("circle")
-                .shapeRadius(7)
-                .shapePadding(8)
-                .scale(color)
-                .title("Themes");
-
-            const legend = svg.append("g")
-                .attr("class", "legend")
-                .attr("transform", `translate(${width-80}, 200)`)
-                .call(bubbleLegend);
-
-        });
         }
 
         // TREEMAP
@@ -607,9 +917,9 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
 
         // TREEMAP
         function renderTreemap() {
-            const containerWidth = 900;
-            const containerHeight = 600;
-            const margins = { top: 20, right: 200, bottom: 100, left: 30 };
+            // const containerWidth = 1000;
+            // const containerHeight = 600;
+            const margins = { top: 20, right: 300, bottom: 100, left: 30 };
             const width = containerWidth - margins.left - margins.right;
             const height = containerHeight - margins.top - margins.bottom - 20;
 
@@ -622,8 +932,6 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
 
             // Color scale for categories using ColorBrewer scheme
             const color = d3.scaleOrdinal()
-                // .domain(["Electronics", "Clothing", "Food"])
-                // .range(d3.schemeSet2);
                 .domain(["Sexual Content & Profantiy", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness"])
                 .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e']);
 
@@ -687,13 +995,13 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             const legend = svg.append("g")
                 .attr("class", "legend")
                 .attr("transform", `translate(${width + 20}, 20)`)
+                .style("inline-size", "60px")
+                .style("overflow-wrap", "break-all")
                 .call(treeLegend);
         }
 
         // Render all charts
         renderDonutChart();
-        renderScatterplot();
-        //renderBarChart();
         renderDonutChart2();
         renderTreemap();
     </script>
