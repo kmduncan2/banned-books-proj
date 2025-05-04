@@ -65,6 +65,7 @@
                  consequence of this is that the general public is being denied access to diverse information 
                  unless they can find somewhere to buy it. So, who is causing this?
              </p>
+             <a href = "/packing.html">circle packing</a>
         </div>
         <div class="chart-container">
             <h2 class="chart-title">Who Bans Books 2024</h2>
@@ -219,7 +220,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             name: "Themes",
             children: [
                 {
-                    name: "Sexual Content & Profantiy",
+                    name: "Sexual Content & Profanity",
                     children: [
                         { name: "Sexual Content", value: 211 },
                         { name: "Teen Pregnancy/Abortion/Sexual Assult", value: 150 }
@@ -411,7 +412,6 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                     .range([height, 0]);
 
                 const color = d3.scaleOrdinal()
-                    // .domain(["Electronics", "Clothing", "Food"])
                     .domain(["Sexual Content & Profanity", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness", "Drugs & Alcohol", "Religion & Politics"])
                     .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e','#e6ab02','#a6761d']);//d3.schemeSet2
 
@@ -932,7 +932,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
 
             // Color scale for categories using ColorBrewer scheme
             const color = d3.scaleOrdinal()
-                .domain(["Sexual Content & Profantiy", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness"])
+                .domain(["Sexual Content & Profanity", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness"])
                 .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e']);
 
             // Hierarchical data processing
