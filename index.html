@@ -53,7 +53,7 @@
              </p>
         </div>
         <div class="chart-container">
-            <h2 class="chart-title">Where Books Are Banned 2024</h2>
+            <h2 class="chart-title">Public Libraries Face The Most Censorship</h2>
             <div id="donut-chart"></div>
         </div>
         <div class="text-container">
@@ -63,12 +63,23 @@
                  being targeted by these bans, restricting access to books from students, but public libraries are 
                  the most censored. 55% of the books banned in 2024 were banned in public libraries. The 
                  consequence of this is that the general public is being denied access to diverse information 
-                 unless they can find somewhere to buy it. So, who is causing this?
+                 unless they can find somewhere to buy it. <strong>WRITE ABOUT WHICH STATES</strong>
              </p>
-             <a href = "/packing.html">circle packing</a>
         </div>
         <div class="chart-container">
-            <h2 class="chart-title">Who Bans Books 2024</h2>
+            <h2 class="chart-title">Number of Challenges in Each State 2023-2024 School Year</h2>
+            <div id="cartogram-chart"></div>
+        </div>
+        <div class="text-container">
+            <p class="section-text">
+                segway So, who is causing this?
+             </p>
+             <!-- <a href = "/packing.html">circle packing</a>
+             <a href = "/cartogram.html">cartogram</a> -->
+             <!-- <a href = "/pcoord.html">parallel coordinates</a> -->
+        </div>
+        <div class="chart-container">
+            <h2 class="chart-title">School Administrations Are Responsible For Over 1/3 of Challenges</h2>
             <div id="donut-chart2"></div>
         </div>
         <div class="text-container">
@@ -118,14 +129,14 @@
 
             <div class="tab-container">
                 <div id="Sexual" class = "tabcontent">
-                        <h2 class="chart-title">Sexual Content & Profanity</h2>
+                        <h2 class="chart-title">Banned because of Sexual Content & Profanity</h2>
                         <div id="scatterplot-mature"></div>
                 </div>
             </div>
 
             <div class="tab-container">
                 <div id="Violence" class = "tabcontent">
-                        <h2 class="chart-title">Violence & Abuse</h2>
+                        <h2 class="chart-title">Banned because of themes of Violence & Abuse</h2>
                         <div id="scatterplot-violence"></div>
                     
                 </div>
@@ -133,42 +144,42 @@
 
             <div class="tab-container">
                 <div id="Race" class = "tabcontent">
-                    <h2 class="chart-title">Race/Racism</h2>
+                    <h2 class="chart-title">Banned because of themes of Race/Racism</h2>
                     <div id="scatterplot-race"></div>
                 </div>
             </div>
 
             <div class="tab-container">
                 <div id="Sexuality" class = "tabcontent">
-                    <h2 class="chart-title">Sexuality/Gender</h2>
+                    <h2 class="chart-title">Banned because of themes of Sexuality/Gender</h2>
                     <div id="scatterplot-sexuality"></div>
                 </div>
             </div>
 
             <div class="tab-container">
                 <div id="Death" class = "tabcontent">
-                    <h2 class="chart-title">Death & Illness</h2>
+                    <h2 class="chart-title">Banned because of themes of Death & Illness</h2>
                     <div id="scatterplot-death"></div>
                 </div> 
             </div>
 
             <div class="tab-container">
                 <div id="Drugs" class = "tabcontent">
-                    <h2 class="chart-title">Drugs & Alcohol</h2>
+                    <h2 class="chart-title">Banned because of themes of Drugs & Alcohol</h2>
                     <div id="scatterplot-drugs"></div>
                 </div>
             </div>
 
             <div class="tab-container">
                 <div id="Religion" class = "tabcontent">
-                    <h2 class="chart-title">Religion & Politics</h2>
+                    <h2 class="chart-title">Banned because of themes of Religion & Politics</h2>
                     <div id="scatterplot-religion"></div>
                 </div>
             </div>
         </div>
         <div class="text-container">
             <a href="tabtesting.html">
-                <h2>tabs</h2>
+                <h2>Tabs on different html pages</h2>
               </a>
             <p class="section-text">
                 words 
@@ -371,6 +382,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
 
+        // Scatterplots
         function renderScatterplot() {
             const containerWidthScatter = 874;
             const containerHeightScatter = 520;
@@ -636,7 +648,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             });
         }
 
-        // BAR CHART
+        // Donut Charts
         function renderDonutChart() {
             // const containerWidth = 900;
             // const containerHeight = 600;
@@ -667,7 +679,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
 
                 const color = d3.scaleOrdinal()
                 .domain(["Public Libraries", "School Libraries", "Schools", "Higher Education/Other"])
-                .range(['#1f78b4','#33a02c','#e31a1c','#fdbf6f']);
+                .range(['#8da0cb','#66c2a5','#fc8d62','#e78ac3']);
 
                 svg.append("g")
                     .attr("class", "legendQuant")
@@ -682,7 +694,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                     .call(legend);
 
                 svg.append("text")
-                    .attr("x", width/2)
+                    .attr("x", 130)//width/2
                     .attr("y", height - 30)
                     .attr("text-anchor", "middle")
                     .html("Data Source: <a href='https://www.ala.org/bbooks/censorship-numbers'>American Library Association</a>");
@@ -763,7 +775,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                     .call(legend);
 
                 svg.append("text")
-                    .attr("x", width/2)
+                    .attr("x", 130)//width/2
                     .attr("y", height - 30)
                     .attr("text-anchor", "middle")
                     .html("Data Source: <a href='https://www.ala.org/bbooks/censorship-numbers'>American Library Association</a>");
@@ -799,7 +811,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             });
         }
 
-        // TREEMAP
+        // Bar Chart
         function renderBarChart() {
             const containerWidth = 900;
             const containerHeight = 600;
@@ -915,7 +927,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             });
         }
 
-        // TREEMAP
+        // Treemap
         function renderTreemap() {
             // const containerWidth = 1000;
             // const containerHeight = 600;
@@ -998,9 +1010,126 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                 .style("inline-size", "60px")
                 .style("overflow-wrap", "break-all")
                 .call(treeLegend);
+
+                svg.append("text")
+                    .attr("x", 100)
+                    .attr("y", height + 40)
+                    .attr("text-anchor", "middle")
+                    .html("Data Source: <a href='https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression-in-schools/#heading-5'>PEN America</a>");
         }
 
+    function renderCartogram() {
+
+        // Set up dimensions
+        const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+        const width = containerWidth - margin.left - margin.right;
+        const height = containerHeight - margin.top - margin.bottom;
+
+        // Calculate the size of each square
+        const squareSize = 50;
+        const padding = 5;
+
+        // Create SVG
+        const svg = d3.select("#cartogram-chart")
+            .append("svg")
+            .attr("width", containerWidth)
+            .attr("height", containerHeight)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            // Create a tooltip
+            const tooltip = d3.select("body")
+                .append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+
+            d3.csv("stateCodeBookBans.csv").then(function(data) {
+                data.forEach(function(d) {
+                    d.Bans = +d.Bans;
+                    d.row = +d.row;
+                    d.col = +d.col + 1;
+                });
+
+                const banColors = d3.scaleThreshold()
+                    .domain([30, 60, 100, 300, 600])
+                    .range(['#feebe2','#fcc5c0','#fa9fb5','#f768a1','#c51b8a','#7a0177']);
+
+                svg.append("g")
+                    .attr("class", "legendQuant")
+                    .attr("transform", "translate(750,300)");
+
+                var legend = d3.legendColor()
+                    .labelFormat(d3.format(".0f"))
+                    .title("Number of Challenges")
+                    .shapeWidth(50)
+                    .scale(banColors);
+
+                svg.select(".legendQuant")
+                    .call(legend);
+
+                // Create squares for each state
+                const states = svg.selectAll(".state")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("class", "state")
+                    .attr("x", d => d.col * (squareSize + padding))
+                    .attr("y", d => d.row * (squareSize + padding))
+                    .attr("width", squareSize)
+                    .attr("height", squareSize)
+                    .attr("fill", d => banColors([d.Bans]))
+                    .on("mouseover", function(event, d) {
+                        d3.select(this)
+                        .transition()
+                        .duration(100)
+                        .attr("stroke", "black")
+                        .attr("stroke-width", 2);
+                        
+                        tooltip.transition()
+                        .duration(100)
+                        .style("opacity", 0.9);
+                        
+                        tooltip.html(`${d.name} (${d.code}): ${d.Bans}`)
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function() {
+                        d3.select(this)
+                        .transition()
+                        .duration(100)
+                        .attr("stroke", "white")
+                        .attr("stroke-width", 1);
+                        
+                        tooltip.transition()
+                        .duration(200)
+                        .style("opacity", 0);
+                    });
+
+                // Add state labels
+                svg.selectAll(".state-label")
+                    .data(data)
+                    .enter()
+                    .append("text")
+                    .attr("class", "state-label")
+                    .attr("x", d => d.col * (squareSize + padding) + squareSize/2)
+                    .attr("y", d => d.row * (squareSize + padding) + squareSize/2 + 5)
+                    .attr("text-anchor", "middle")
+                    .attr("font-size", "12px")
+                    .attr("font-weight", "bold")
+                    .attr("fill", "white")
+                    .text(d => d.code);
+
+            });
+
+            svg.append("text")
+                    .attr("x", 100)
+                    .attr("y", 520)
+                    .attr("text-anchor", "middle")
+                    .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
+    }
+
         // Render all charts
+        renderCartogram();
         renderDonutChart();
         renderDonutChart2();
         renderTreemap();

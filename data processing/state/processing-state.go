@@ -7,6 +7,28 @@ import (
 	"strconv"
 )
 
+// type State struct {
+// 	code    string
+// 	name    string
+// 	row     int
+// 	col     int
+// 	numBans int
+// }
+
+// func NewState(abbr, state string, inRow, inCol int) State {
+// 	return State{
+// 		code:    abbr,
+// 		name:    state,
+// 		row:     inRow,
+// 		col:     inCol,
+// 		numBans: 0,
+// 	}
+// }
+
+// func (state *State) incBans() {
+// 	state.numBans++
+// }
+
 func ProcessState(fileName string, states map[string]int) map[string]int {
 	file, err := os.Open(fileName)
 	if err != nil {

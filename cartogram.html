@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+  <title>US States Cartogram Using Squares</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .state {
+      stroke: white;
+      stroke-width: 1px;
+    }
+    .state:hover {
+      stroke: black;
+      stroke-width: 2px;
+      cursor: pointer;
+    }
+    .tooltip {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 8px;
+      pointer-events: none;
+      font-size: 12px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .legend {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>US States Cartogram (Square Tiles)</h1>
+  <div id="cartogram"></div>
+    <!-- data from PEN America -->
+  <script>
+    function renderCartogram() {
+
+        // Set up dimensions
+        const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+        const width = 900 - margin.left - margin.right;
+        const height = 600 - margin.top - margin.bottom;
+
+        // Calculate the size of each square
+        const squareSize = 50;
+        const padding = 5;
+
+        // Create SVG
+        const svg = d3.select("#cartogram")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // Create a tooltip
+        const tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+        d3.csv("stateCodeBookBans.csv").then(function(data) {
+            data.forEach(function(d) {
+                d.Bans = +d.Bans;
+                d.row = +d.row;
+                d.col = +d.col;
+            });
+
+            const banColors = d3.scaleThreshold()
+                .domain([30, 60, 100, 300, 600])
+                .range(['#feebe2','#fcc5c0','#fa9fb5','#f768a1','#c51b8a','#7a0177']);
+
+            svg.append("g")
+                .attr("class", "legendQuant")
+                .attr("transform", "translate(680,0)");
+
+            var legend = d3.legendColor()
+                .labelFormat(d3.format(".0f"))
+                .title("Number of Challenges")
+                // .orient('horizontal')
+                .shapeWidth(50)
+                .scale(banColors);
+
+            svg.select(".legendQuant")
+                .call(legend);
+
+            // Create squares for each state
+            const states = svg.selectAll(".state")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("class", "state")
+                .attr("x", d => d.col * (squareSize + padding))
+                .attr("y", d => d.row * (squareSize + padding))
+                .attr("width", squareSize)
+                .attr("height", squareSize)
+                .attr("fill", d => banColors([d.Bans]))
+                .on("mouseover", function(event, d) {
+                    d3.select(this)
+                    .transition()
+                    .duration(100)
+                    .attr("stroke", "black")
+                    .attr("stroke-width", 2);
+                    
+                    tooltip.transition()
+                    .duration(100)
+                    .style("opacity", 0.9);
+                    
+                    tooltip.html(`<strong>${d.name} (${d.code})</strong><br>Region: ${d.Bans}`)
+                    .style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+                })
+                .on("mouseout", function() {
+                    d3.select(this)
+                    .transition()
+                    .duration(100)
+                    .attr("stroke", "white")
+                    .attr("stroke-width", 1);
+                    
+                    tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 0);
+                });
+
+            // Add state labels
+            svg.selectAll(".state-label")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("class", "state-label")
+                .attr("x", d => d.col * (squareSize + padding) + squareSize/2)
+                .attr("y", d => d.row * (squareSize + padding) + squareSize/2 + 5)
+                .attr("text-anchor", "middle")
+                .attr("font-size", "12px")
+                .attr("font-weight", "bold")
+                .attr("fill", "white")
+                .text(d => d.code);
+
+            // Add legend
+            // const legend = svg.append("g")
+            //     .attr("class", "legend")
+            //     .attr("transform", `translate(${width - 150}, ${height - 120})`);
+
+            // const regions = ["Northeast", "South", "Midwest", "West"];
+            
+            // regions.forEach((region, i) => {
+            // const legendRow = legend.append("g")
+            //     .attr("transform", `translate(0, ${i * 25})`);
+            
+            // legendRow.append("rect")
+            //     .attr("width", 20)
+            //     .attr("height", 20)
+            //     .attr("fill", banColors[region]);
+            
+            // legendRow.append("text")
+            //     .attr("x", 30)
+            //     .attr("y", 15)
+            //     .text(region);
+            // });
+
+            // Add title
+            svg.append("text")
+                .attr("x", width / 2)
+                .attr("y", 0)
+                .attr("text-anchor", "middle")
+                .attr("font-size", "16px")
+                .attr("font-weight", "bold")
+                .text("US States as Equal-Sized Squares");
+
+        });
+    }
+
+    renderCartogram()
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"93aba9bcd9acfaec","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.4.0-1-g37f21b1","token":"cefab20fd71347d6a38acf95504d2fe5"}' crossorigin="anonymous"></script>
+</body>
+</html>
