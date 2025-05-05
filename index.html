@@ -8,7 +8,8 @@
 <body>
     <div class="container">
         <div class="heading"> 
-            <h1 class="heading-text">5,813 books were challenged in the US in 2024</h1>
+            <h1 class="heading-text" style = "font-size: 43pt;">5,813 books were challenged <br/>in the US in 2024</h1>
+            <p style = "color: #ffffff; text-align: center; font-size: 14pt;">Created by: Kade Duncan</p>
     
         </div>
         <div class="text-container">
@@ -175,9 +176,9 @@
             </div>
         </div>
         <div class="text-container">
-            <a href="alarktabs.html">
+            <!-- <a href="alarktabs.html">
                 <h2>Tabs on different html pages</h2>
-              </a>
+              </a> -->
             <p class="section-text">
                 words 
              </p>
@@ -218,28 +219,13 @@
         </div>
     </div>
 
-    <div class="tooltip" id="tooltip"></div>
+    <!-- <div class="tooltip" id="tooltip"></div> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <script>
         const containerWidth = 1000;
         const containerHeight = 600;
-
-        // Common tooltip setup
-        const tooltip = d3.select("#tooltip");
-        
-        function showTooltip(event, text) {
-            tooltip
-                .style("opacity", 1)
-                .style("left", (event.pageX + 10) + "px")
-                .style("top", (event.pageY - 20) + "px")
-                .html(text);
-        }
-        
-        function hideTooltip() {
-            tooltip.style("opacity", 0);
-        }
 
         function jitter(){
             let i = Math.random()*10;
@@ -894,7 +880,7 @@
                         div.transition()
                         .duration(500)
                         .style("opacity", 0);
-                    });;
+                    });
             
             });
         }
@@ -912,6 +898,10 @@
                 .append("g")
                 .attr("transform", `translate(${margins.left},${margins.top})`);
 
+            var div = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+
             // Color scale for categories using ColorBrewer scheme
             const color = d3.scaleOrdinal()
                 .domain(["Sexual Content & Profanity", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness"])
@@ -923,8 +913,6 @@
                     .sum(d => d.value)
                     .sort((a, b) => b.value - a.value);
                 // var root = d3.hierarchy(data).sum(function(d){ return d.value})
-
-                console.log(root);
 
                 // Create treemap layout
                 d3.treemap()
@@ -943,10 +931,20 @@
                     .attr("width", d => d.x1 - d.x0)
                     .attr("height", d => d.y1 - d.y0)
                     .style("fill", d => color(d.parent.data.name))
-                    .on("mouseover", (event, d) => {
-                        showTooltip(event, `${d.parent.data.name}: ${d.data.name}<br>${d.data.value} books`);
-                    })
-                    .on("mouseout", hideTooltip);
+                    .on("mouseover", function(event,d) {
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        div.html(`${d.parent.data.name}: ${d.data.name}<br>${d.data.value} books`)
+                            .attr("class", "tooltip")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY + 10) + "px");
+                        })
+                    .on("mouseout", function(d) {
+                        div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                    });
 
                 // Add text labels
                 svg.selectAll("text")

@@ -8,12 +8,16 @@ h1 {
     text-align: center;
 }
 
+a {
+    color: blue;
+}
+
 .heading {
     /* display: flex; */
     height: 250px;
 }
 .heading-text {
-    font-size: 50pt;
+    font-size: 40pt;
 }
 .container {
     display: flex;
@@ -126,6 +130,7 @@ h1 {
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
+    font-family: New Century Schoolbook, TeX Gyre Schola, serif;
   }
   
   /* Change background color of buttons on hover */
