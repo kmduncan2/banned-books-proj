@@ -241,45 +241,6 @@
             tooltip.style("opacity", 0);
         }
 
-        const treemapData = {
-            name: "Themes",
-            children: [
-                {
-                    name: "Sexual Content & Profanity",
-                    children: [
-                        { name: "Sexual Content", value: 211 },
-                        { name: "Teen Pregnancy/Abortion/Sexual Assult", value: 150 }
-                    ]
-                },
-                {
-                    name: "Violence & Abuse",
-                    children: [
-                        { name: "Violence & Physical Abuse", value: 385 }
-                    ]
-                },
-                {
-                    name: "Death & Illness",
-                    children: [
-                        { name: "Health & Wellbeing for Students", value: 331 },
-                        { name: "Grief/Death", value: 264 }
-                    ]
-                },
-                {
-                    name: "Sexuality/Gender",
-                    children: [
-                        { name: "LGBTQ+", value: 229 },
-                        { name: "Transgender", value: 68 }
-                    ]
-                },
-                {
-                    name: "Race/Racism",
-                    children: [
-                        { name: "Race/Racism", value: 260 }
-                    ]
-                }
-            ]
-        };
-
         function jitter(){
             let i = Math.random()*10;
             if (i <= 5) {
@@ -488,7 +449,7 @@
                             .attr("class", "tooltip")
                             .style("text-align", "left")
                             .style("height", "auto")
-                            .style("left", (event.pageX + 15) + "px")
+                            .style("left", (event.pageX + 1) + "px")
                             .style("top", (event.pageY + 10) + "px");
                         })
                     .on("mouseout", function(d) {
@@ -638,7 +599,7 @@
                     // Simple legend just showing the current theme
                     const legend = svg.append("g")
                         .attr("class", "legend")
-                        .attr("transform", `translate(${width - 120}, 200)`);
+                        .attr("transform", `translate(${width - 140}, 300)`);
                         
                     legend.append("circle")
                         .attr("r", 7)
@@ -938,8 +899,8 @@
             });
         }
 
-        // Treemap
-        function renderTreemap() {
+        // Treemap from json data file
+        function renderTreemapJSON() {
             const margins = { top: 20, right: 300, bottom: 100, left: 30 };
             const width = containerWidth - margins.left - margins.right;
             const height = containerHeight - margins.top - margins.bottom - 20;
@@ -956,75 +917,81 @@
                 .domain(["Sexual Content & Profanity", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness"])
                 .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e']);
 
-            // Hierarchical data processing
-            const root = d3.hierarchy(treemapData)
-                .sum(d => d.value)
-                .sort((a, b) => b.value - a.value);
+            d3.json("treemapThemeData.json").then(function(data) {
+                //Hierarchical data processing
+                const root = d3.hierarchy(data)
+                    .sum(d => d.value)
+                    .sort((a, b) => b.value - a.value);
+                // var root = d3.hierarchy(data).sum(function(d){ return d.value})
 
-            // Create treemap layout
-            d3.treemap()
-                .size([width, height])
-                .padding(2)
-                (root);
+                console.log(root);
 
-            // Add rectangles
-            svg.selectAll("rect")
-                .data(root.leaves())
-                .enter()
-                .append("rect")
-                .attr("class", "node")
-                .attr("x", d => d.x0)
-                .attr("y", d => d.y0)
-                .attr("width", d => d.x1 - d.x0)
-                .attr("height", d => d.y1 - d.y0)
-                .style("fill", d => color(d.parent.data.name))
-                .on("mouseover", (event, d) => {
-                    showTooltip(event, `${d.parent.data.name}: ${d.data.name}<br>${d.data.value} books`);
-                })
-                .on("mouseout", hideTooltip);
+                // Create treemap layout
+                d3.treemap()
+                    .size([width, height])
+                    .padding(2)
+                    (root);
 
-            // Add text labels
-            svg.selectAll("text")
-                .data(root.leaves())
-                .enter()
-                .append("text")
-                .attr("x", d => d.x0 + 5)
-                .attr("y", d => d.y0 + 15)
-                .text(d => d.data.name)
-                .attr("font-size", "12px")
-                .attr("fill", "white")
-                .each(function(d) {
-                    const node = this;
-                    const textWidth = node.getComputedTextLength();
-                    const boxWidth = d.x1 - d.x0;
-                    
-                    // Only show text if it fits
-                    if (textWidth > boxWidth - 10) {
-                        d3.select(this).style("opacity", 0);
-                    }
-                });
+                // Add rectangles
+                svg.selectAll("rect")
+                    .data(root.leaves())
+                    .enter()
+                    .append("rect")
+                    .attr("class", "node")
+                    .attr("x", d => d.x0)
+                    .attr("y", d => d.y0)
+                    .attr("width", d => d.x1 - d.x0)
+                    .attr("height", d => d.y1 - d.y0)
+                    .style("fill", d => color(d.parent.data.name))
+                    .on("mouseover", (event, d) => {
+                        showTooltip(event, `${d.parent.data.name}: ${d.data.name}<br>${d.data.value} books`);
+                    })
+                    .on("mouseout", hideTooltip);
 
-            // Create legend using d3-legend
-            const treeLegend = d3.legendColor()
-                .shape("rect")
-                .shapeWidth(16)
-                .shapeHeight(16)
-                .shapePadding(10)
-                .scale(color)
-                .title("Categories");
+                // Add text labels
+                svg.selectAll("text")
+                    .data(root.leaves())
+                    .enter()
+                    .append("text")
+                    .attr("x", d => d.x0 + 5)
+                    .attr("y", d => d.y0 + 15)
+                    .text(d => d.data.name)
+                    .attr("font-size", "12px")
+                    .attr("fill", "white")
+                    .each(function(d) {
+                        const node = this;
+                        const textWidth = node.getComputedTextLength();
+                        const boxWidth = d.x1 - d.x0;
+                        
+                        // Only show text if it fits
+                        if (textWidth > boxWidth - 10) {
+                            d3.select(this).style("opacity", 0);
+                        }
+                    });
 
-            const legend = svg.append("g")
-                .attr("class", "legend")
-                .attr("transform", `translate(${width + 20}, 20)`)
-                .style("inline-size", "60px")
-                .style("overflow-wrap", "break-all")
-                .call(treeLegend);
+                // Create legend using d3-legend
+                const treeLegend = d3.legendColor()
+                    .shape("rect")
+                    .shapeWidth(16)
+                    .shapeHeight(16)
+                    .shapePadding(10)
+                    .scale(color)
+                    .title("Categories");
+
+                const legend = svg.append("g")
+                    .attr("class", "legend")
+                    .attr("transform", `translate(${width + 20}, 20)`)
+                    .style("inline-size", "60px")
+                    .style("overflow-wrap", "break-all")
+                    .call(treeLegend);
 
                 svg.append("text")
                     .attr("x", 100)
                     .attr("y", height + 40)
                     .attr("text-anchor", "middle")
                     .html("Data Source: <a href='https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression-in-schools/#heading-5'>PEN America</a>");
+            });
+            
         }
 
         function renderCartogram() {
@@ -1141,7 +1108,7 @@
         renderCartogram();
         renderDonutChart();
         renderDonutChart2();
-        renderTreemap();
+        renderTreemapJSON();
     </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9350595ed95e15d8","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.4.0-1-g37f21b1","token":"cefab20fd71347d6a38acf95504d2fe5"}' crossorigin="anonymous"></script>
 </body>

@@ -1,0 +1,38 @@
+{
+    "name": "Themes",
+    "children" : [
+        {
+            "name": "Sexual Content & Profanity",
+            "children": [
+                { "name": "Sexual Content", "value": 211 },
+                { "name": "Teen Pregnancy/Abortion/Sexual Assult", "value": 150 }
+            ]
+        },
+        {
+            "name": "Violence & Abuse",
+            "children": [
+                { "name": "Violence & Physical Abuse", "value": 385 }
+            ]
+        },
+        {
+            "name": "Death & Illness",
+            "children": [
+                { "name": "Health & Wellbeing for Students", "value": 331 },
+                { "name": "Grief/Death", "value": 264 }
+            ]
+        },
+        {
+            "name": "Sexuality/Gender",
+            "children": [
+                { "name": "LGBTQ+", "value": 229 },
+                { "name": "Transgender", "value": 68 }
+            ]
+        },
+        {
+            "name": "Race/Racism",
+            "children": [
+                { "name": "Race/Racism", "value": 260 }
+            ]
+        }
+    ]
+}
