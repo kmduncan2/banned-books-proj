@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<!-- thank you W3schools -->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.tooltip {
+    position: absolute;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    padding: 2px;
+    background: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+</head>
+<body>
+
+<div class="tab">
+  <button class="tablinks" onclick="openTheme(event, 'Overview')" id="defaultOpen">Overview</button>
+  <button class="tablinks" onclick="openTheme(event, 'Sexual')">Sexual Content & Profanity</button>
+  <button class="tablinks" onclick="openTheme(event, 'Violence')">Violence & Abuse</button>
+  <button class="tablinks" onclick="openTheme(event, 'Race')">Race/Racism</button>
+  <button class="tablinks" onclick="openTheme(event, 'Sexuality')">Sexuality/Gender</button>
+  <button class="tablinks" onclick="openTheme(event, 'Death')">Death & Illness</button>
+  <button class="tablinks" onclick="openTheme(event, 'Drugs')">Drugs & Alcohol</button>
+  <button class="tablinks" onclick="openTheme(event, 'Religion')">Religion & Politics</button>
+</div>
+
+<div id="Overview" class="tabcontent">
+    <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
+    <div id="scatterplot"></div>
+</div>
+
+<div id="Sexual" class="tabcontent">
+    <h2 class="chart-title">Sexual Content & Profanity</h2>
+    <div id="scatterplot-mature"></div>
+</div>
+
+<div id="Violence" class="tabcontent">
+    <h2 class="chart-title">Violence & Abuse</h2>
+    <div id="scatterplot-violence"></div>
+</div>
+
+<div id="Race" class="tabcontent">
+    <h2 class="chart-title">Race/Racism</h2>
+    <div id="scatterplot-race"></div>
+</div>
+
+<div id="Sexuality" class="tabcontent">
+    <h2 class="chart-title">Sexuality/Gender</h2>
+    <div id="scatterplot-sexuality"></div>
+</div>
+
+<div id="Death" class="tabcontent">
+    <h2 class="chart-title">Death & Illness</h2>
+    <div id="scatterplot-death"></div>
+</div>
+
+<div id="Drugs" class="tabcontent">
+    <h2 class="chart-title">Drugs & Alcohol</h2>
+    <div id="scatterplot-drugs"></div>
+</div>
+
+<div id="Religion" class="tabcontent">
+    <h2 class="chart-title">Religion & Politics</h2>
+    <div id="scatterplot-religion"></div>
+</div>
+
+<script>
+let thisTheme = "";
+let themeCont = "";
+let thisColor = "";
+let overview = false;
+let mature = false;
+let violence = false;
+let race = false;
+let sexuality = false;
+let death = false;
+let drugs = false;
+let religion = false;
+
+function openTheme(evt, themeName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(themeName).style.display = "block";
+  evt.currentTarget.className += " active";
+
+  if (themeName == "Overview") {
+    if (!overview){
+        thisTheme = "Default";
+        themeCont = "#scatterplot";
+        renderScatterplot();
+        overview = true;
+    }
+  } else if (themeName == "Sexual"){
+    if (!mature){
+        thisTheme = "Sexual Content & Profanity";
+        themeCont = "#scatterplot-mature";
+        thisColor = "#1b9c9e";
+        renderScatterplotSpecific();  
+        mature = true; 
+    }
+  } else if (themeName == "Violence") {
+    if (!violence){
+        thisTheme = "Violence & Abuse";
+        themeCont = "#scatterplot-violence";
+        thisColor = "#d95f02";
+        renderScatterplotSpecific();   
+        violence = true; 
+    }
+  } else if (themeName == "Race") {
+    if (!race) {
+        thisTheme = "Race/Racism";
+        themeCont = "#scatterplot-race";
+        thisColor = "#7570b3";
+        renderScatterplotSpecific();
+        race = true;
+    }
+  } else if (themeName == "Sexuality") {
+    if (!sexuality){
+        thisTheme = "Sexuality/Gender";
+        themeCont = "#scatterplot-sexuality";
+        thisColor = "#e7298a";
+        renderScatterplotSpecific();
+        sexuality = true;
+    }
+  } else if (themeName == "Death") {
+    if (!death) {
+        thisTheme = "Death & Illness";
+        themeCont = "#scatterplot-death";
+        thisColor = "#66a61e";
+        renderScatterplotSpecific();
+        death = true;
+    }
+  } else if (themeName == "Drugs") {
+    if (!drugs) {
+        thisTheme = "Drugs & Alcohol";
+        themeCont = "#scatterplot-drugs";
+        thisColor = "#e6ab02";
+        renderScatterplotSpecific();
+        drugs = true;
+    }
+  } else if (themeName == "Religion") {
+    if (!religion){
+        thisTheme = "Religion & Politics";
+        themeCont = "#scatterplot-religion";
+        thisColor = "#a6761d";
+        renderScatterplotSpecific();
+        religion = true;
+    }
+  }
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+function jitter(){
+    let i = Math.random()*10;
+    if (i <= 5) {
+        j = -2;
+    } else {
+        j = 2;
+    }
+    return Math.random() * j;
+}
+
+function renderScatterplot() {
+    const containerWidth = 900;
+    const containerHeight = 550;
+    const margins = { top: 20, right: 150, bottom: 100, left: 60 };
+    const width = containerWidth - margins.left - margins.right;
+    const height = containerHeight - margins.top - margins.bottom;
+
+    const svg = d3.select(themeCont)
+        .append("svg")
+        .attr("width", containerWidth)
+        .attr("height", containerHeight)
+        .append("g")
+        .attr("transform", `translate(${margins.left},${margins.top})`);
+
+    var div = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+    d3.csv("bannedBooksThemesUpdated.csv").then(function(data) {
+        data.forEach(function(d) {
+            d.Times = +d.Times;
+            d.NumStates = +d.NumStates;
+        });
+
+        // scale for x axis
+        const x = d3
+            .scaleLinear()
+            .domain([0, d3.max(data.map((d) => d.Times))])
+            .range([0, width]);
+
+        // scale for y axis
+        const y = d3
+            .scaleLinear()
+            .domain([
+                0,
+                d3.max(data, (d) => d.NumStates),
+            ])
+            .nice()
+            .range([height, 0]);
+
+        const color = d3.scaleOrdinal()
+            .domain(["Sexual Content & Profanity", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness", "Drugs & Alcohol", "Religion & Politics"])
+            .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e','#e6ab02','#a6761d']);//d3.schemeSet2
+
+        // adding x axis
+        svg.append("g")
+            .attr("class", "axis axis-x")
+            .attr("transform", `translate(0, ${height})`)
+            .call(d3.axisBottom(x).ticks(10))
+            .selectAll("text")
+            .style("font-size", "11pt");
+
+        // adding y axis
+        svg.append("g")
+            .attr("class", "axis axis-y")
+            .call(d3.axisLeft(y).ticks(5))
+            .selectAll("text")
+            .style("font-size", "11pt");
+
+        svg.append("text")
+            .attr("class", "axes")
+            .attr("x", width/2)
+            .attr("y", 485)
+            .attr("text-anchor", "middle")
+            .style("font-size", "13pt")
+            .text("Times Banned");
+
+        svg.append("text")
+            .attr("class", "axes")
+            .attr("x", height/-2)
+            .attr("y", -45)
+            .attr("transform", "rotate(-90)")
+            .attr("text-anchor", "middle")
+            .style("font-size", "13pt")
+            .text("Number of States Banned In");
+
+        svg.append("text")
+            .attr("x", 50)
+            .attr("y", height + 80)
+            .attr("text-anchor", "middle")
+            .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
+
+        // adding points
+        svg.selectAll(".point")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("class", "point")
+            .attr("cx", d => x(d.Times))
+            .attr("r", 7)
+            .attr("cy", d => y(d.NumStates) + jitter())
+            .style("stroke-width", "0px")
+            .style("opacity", "0.6")
+            .attr('fill', d => color(d["Reason"]))
+            .on("mouseover", function(event,d) {
+                div.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                div.html(d.Title + " by " + d.Author + "<br/> Themes: " + d.Reason + "<br/>" + d.SecondReason + "<br/>" + d.ThirdReason)
+                     .attr("class", "tooltip")
+                     .style("text-align", "left")
+                     .style("height", "auto")
+                     .style("left", (event.pageX + 10) + "px")
+                     .style("top", (event.pageY + 10) + "px");
+                })
+            .on("mouseout", function(d) {
+                div.transition()
+                  .duration(500)
+                  .style("opacity", 0);
+            });
+
+        const bubbleLegend = d3.legendColor()
+            .shape("circle")
+            .shapeRadius(7)
+            .shapePadding(8)
+            .scale(color)
+            .title("Themes");
+
+        const legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("transform", `translate(${width-80}, 200)`)
+            .call(bubbleLegend);
+    });
+}
+
+function renderScatterplotSpecific() {
+    const containerWidth = 900;
+    const containerHeight = 550;
+    const margins = { top: 20, right: 150, bottom: 100, left: 60 };
+    const width = containerWidth - margins.left - margins.right;
+    const height = containerHeight - margins.top - margins.bottom;
+
+    const svg = d3.select(themeCont)
+        .append("svg")
+        .attr("width", containerWidth)
+        .attr("height", containerHeight)
+        .append("g")
+        .attr("transform", `translate(${margins.left},${margins.top})`);
+
+    var div = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+    d3.csv("bannedBooksThemesUpdated.csv").then(function(data) {
+        data.forEach(function(d) {
+            d.Times = +d.Times;
+            d.NumStates = +d.NumStates;
+            // Add a property to determine if this book belongs to the current theme
+            d.belongsToTheme = (d.Reason === thisTheme || d.SecondReason === thisTheme || d.ThirdReason === thisTheme);
+        });
+        
+        // Filter data to only include books with this theme
+        const filteredData = data.filter(d => d.belongsToTheme);
+
+        // scale for x axis
+        const x = d3
+            .scaleLinear()
+            .domain([0, d3.max(data.map((d) => d.Times))])
+            .range([0, width]);
+
+        // scale for y axis
+        const y = d3
+            .scaleLinear()
+            .domain([
+                0,
+                d3.max(data, (d) => d.NumStates),
+            ])
+            .nice()
+            .range([height, 0]);
+
+        // adding x axis
+        svg.append("g")
+            .attr("class", "axis axis-x")
+            .attr("transform", `translate(0, ${height})`)
+            .call(d3.axisBottom(x).ticks(10))
+            .selectAll("text")
+            .style("font-size", "11pt");
+
+        // adding y axis
+        svg.append("g")
+            .attr("class", "axis axis-y")
+            .call(d3.axisLeft(y).ticks(5))
+            .selectAll("text")
+            .style("font-size", "11pt");
+
+        svg.append("text")
+            .attr("class", "axes")
+            .attr("x", width/2)
+            .attr("y", 485)
+            .attr("text-anchor", "middle")
+            .style("font-size", "13pt")
+            .text("Times Banned");
+
+        svg.append("text")
+            .attr("class", "axes")
+            .attr("x", height/-2)
+            .attr("y", -45)
+            .attr("transform", "rotate(-90)")
+            .attr("text-anchor", "middle")
+            .style("font-size", "13pt")
+            .text("Number of States Banned In");
+
+        svg.append("text")
+            .attr("x", 50)
+            .attr("y", height + 80)
+            .attr("text-anchor", "middle")
+            .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
+
+        // Add count information
+        // svg.append("text")
+        //     .attr("x", width - 100)
+        //     .attr("y", 20)
+        //     .attr("text-anchor", "end")
+        //     .style("font-size", "12pt")
+        //     .text(`Books: ${filteredData.length} of ${data.length}`);
+
+        // adding points - ONLY for the filtered data
+        svg.selectAll(".point")
+            .data(filteredData)  // Use filtered data
+            .enter()
+            .append("circle")
+            .attr("class", "point")
+            .attr("cx", d => x(d.Times))
+            .attr("r", 7)
+            .attr("cy", d => y(d.NumStates) + jitter())
+            .style("stroke-width", "0px")
+            .style("opacity", "0.8")
+            .attr("fill", thisColor)
+            .on("mouseover", function(event,d) {
+                div.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                div.html(d.Title + " by " + d.Author + "<br/> Themes: " + d.Reason + 
+                      (d.SecondReason ? "<br/>" + d.SecondReason : "") + 
+                      (d.ThirdReason ? "<br/>" + d.ThirdReason : ""))
+                     .attr("class", "tooltip")
+                     .style("text-align", "left")
+                     .style("height", "auto")
+                     .style("left", (event.pageX + 10) + "px")
+                     .style("top", (event.pageY + 100) + "px");
+                })
+            .on("mouseout", function(d) {
+                div.transition()
+                  .duration(500)
+                  .style("opacity", 0);
+            });
+
+        // Simple legend just showing the current theme
+        const legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("transform", `translate(${width - 120}, 200)`);
+            
+        legend.append("circle")
+            .attr("r", 7)
+            .attr("cx", 10)
+            .attr("cy", 5)
+            .attr("fill", thisColor);
+            
+        legend.append("text")
+            .attr("x", 25)
+            .attr("y", 9)
+            .text(thisTheme);
+            
+        legend.append("text")
+            .attr("x", 20)
+            .attr("y", -15)
+            .attr("font-weight", "bold")
+            .text("Theme");
+    });
+}
+</script>
+   
+</body>
+</html>

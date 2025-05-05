@@ -33,7 +33,7 @@ h1 {
 .chart-title {
     text-align: center;
     margin-bottom: 20px;
-    color: #444;
+    color: #000000;
 }
 
 .text-container {
@@ -109,14 +109,15 @@ h1 {
     inline-size: 60px;
 }
 
+/* Style the tab */
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
   }
   
-/* Style the buttons inside the tab */
-.tab button {
+  /* Style the buttons inside the tab */
+  .tab button {
     background-color: inherit;
     float: left;
     border: none;
@@ -125,27 +126,25 @@ h1 {
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
-}
+  }
   
-/* Change background color of buttons on hover */
-.tab button:hover {
+  /* Change background color of buttons on hover */
+  .tab button:hover {
     background-color: #ddd;
-}
+  }
   
-/* Create an active/current tablink class */
-.tab button.active {
+  /* Create an active/current tablink class */
+  .tab button.active {
     background-color: #ccc;
-}
+  }
   
   /* Style the tab content */
-.tabcontent {
+  .tabcontent {
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
-    /* width: 874px; */
-    height: 600px;
-}
+  }
 
 .state {
     stroke: white;

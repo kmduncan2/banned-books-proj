@@ -110,75 +110,72 @@
         <div class="chart-container" style="height: 700px;">
             <div class="tab">
                 <button class="tablinks" onclick="openTheme(event, 'Overview')" id="defaultOpen">Overview</button>
-                <button class="tablinks" onclick="openTheme(event, 'Sexual')">Sexual Content & Profantiy</button>
+                <button class="tablinks" onclick="openTheme(event, 'Sexual')">Sexual Content & Profanity</button>
                 <button class="tablinks" onclick="openTheme(event, 'Violence')">Violence & Abuse</button>
                 <button class="tablinks" onclick="openTheme(event, 'Race')">Race/Racism</button>
                 <button class="tablinks" onclick="openTheme(event, 'Sexuality')">Sexuality/Gender</button>
                 <button class="tablinks" onclick="openTheme(event, 'Death')">Death & Illness</button>
                 <button class="tablinks" onclick="openTheme(event, 'Drugs')">Drugs & Alcohol</button>
                 <button class="tablinks" onclick="openTheme(event, 'Religion')">Religion & Politics</button>
-            </div>
+                <button class="tablinks" onclick="openTheme(event, 'Explain')">More Information</button>
+              </div>
+              
+              <div id="Overview" class="tabcontent">
+                  <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
+                  <div id="scatterplot"></div>
+              </div>
+              
+              <div id="Sexual" class="tabcontent">
+                  <h2 class="chart-title">Banned because of Sexual Content & Profanity</h2>
+                  <div id="scatterplot-mature"></div>
+              </div>
+              
+              <div id="Violence" class="tabcontent">
+                  <h2 class="chart-title">Banned because of themes of Violence & Abuse</h2>
+                  <div id="scatterplot-violence"></div>
+              </div>
+              
+              <div id="Race" class="tabcontent">
+                  <h2 class="chart-title">Banned because of themes of Race/Racism</h2>
+                  <div id="scatterplot-race"></div>
+              </div>
+              
+              <div id="Sexuality" class="tabcontent">
+                  <h2 class="chart-title">Banned because of themes of Sexuality/Gender</h2>
+                  <div id="scatterplot-sexuality"></div>
+              </div>
+              
+              <div id="Death" class="tabcontent">
+                  <h2 class="chart-title">Banned because of themes of Death & Illness</h2>
+                  <div id="scatterplot-death"></div>
+              </div>
+              
+              <div id="Drugs" class="tabcontent">
+                  <h2 class="chart-title">Banned because of themes of Drugs & Alcohol</h2>
+                  <div id="scatterplot-drugs"></div>
+              </div>
+              
+              <div id="Religion" class="tabcontent">
+                  <h2 class="chart-title">Banned because of themes of Religion & Politics</h2>
+                  <div id="scatterplot-religion"></div>
+              </div>
 
-            <div class="tab-container">
-                <div id="Overview" class = "tabcontent">
-                        <h2 class="chart-title">Top 144 Books Banned in the US from July 1, 2023 to June 30, 2024</h2>
-                        <div id="scatterplot"></div>
-                    
-                </div>
-            </div>
+              <div id="Explain" class="tabcontent">
+                <h2 class="chart-title">What Is Included In Each Theme?</h2>
+                <p style = "font-size: 14pt; line-height: 1.3;">
+                    <strong>Sexual Content & Profanity:</strong> Depictions of sex, swearing, or other content that was deemed mature.<br/><br/>
+                    <strong>Violence & Abuse:</strong> Depictions or discussion of sexual violence/assault, child abuse, domestic abuse, other kinds of abuse, police violence, school shootings, murder, graphic fights, and other physical violence.<br/><br/>
+                    <strong>Race/Racism:</strong> Depictions or acknowledgment of racism, slavery, and other content painted as Critical Race Theory.<br/><br/>
+                    <strong>Sexuality/Gender:</strong> Depictions of queer relationships, queer and/or trans experiences, inclusion of LGBTQIA+ characters, inclusion of ideas that go against traditional gender ideology (ex. feminist or trans ideas), misogyny, sexism.<br/><br/>
+                    <strong>Death & Illness:</strong> Depictions of death, mental illness, suicide, mental health, terminal illness, and/or disabilities.<br/><br/>
+                    <strong>Drugs & Alcohol:</strong> Depictions of drug and/or alcohol use as well as alcoholism and other addiction.<br/><br/>
+                    <strong>Religion & Politics:</strong> Religious or anti-religious themes, depictions of war, communist ideology, and inclusions of abortion or birth control.<br/><br/>
 
-            <div class="tab-container">
-                <div id="Sexual" class = "tabcontent">
-                        <h2 class="chart-title">Banned because of Sexual Content & Profanity</h2>
-                        <div id="scatterplot-mature"></div>
-                </div>
-            </div>
-
-            <div class="tab-container">
-                <div id="Violence" class = "tabcontent">
-                        <h2 class="chart-title">Banned because of themes of Violence & Abuse</h2>
-                        <div id="scatterplot-violence"></div>
-                    
-                </div>
-            </div>
-
-            <div class="tab-container">
-                <div id="Race" class = "tabcontent">
-                    <h2 class="chart-title">Banned because of themes of Race/Racism</h2>
-                    <div id="scatterplot-race"></div>
-                </div>
-            </div>
-
-            <div class="tab-container">
-                <div id="Sexuality" class = "tabcontent">
-                    <h2 class="chart-title">Banned because of themes of Sexuality/Gender</h2>
-                    <div id="scatterplot-sexuality"></div>
-                </div>
-            </div>
-
-            <div class="tab-container">
-                <div id="Death" class = "tabcontent">
-                    <h2 class="chart-title">Banned because of themes of Death & Illness</h2>
-                    <div id="scatterplot-death"></div>
-                </div> 
-            </div>
-
-            <div class="tab-container">
-                <div id="Drugs" class = "tabcontent">
-                    <h2 class="chart-title">Banned because of themes of Drugs & Alcohol</h2>
-                    <div id="scatterplot-drugs"></div>
-                </div>
-            </div>
-
-            <div class="tab-container">
-                <div id="Religion" class = "tabcontent">
-                    <h2 class="chart-title">Banned because of themes of Religion & Politics</h2>
-                    <div id="scatterplot-religion"></div>
-                </div>
+                </p>
             </div>
         </div>
         <div class="text-container">
-            <a href="tabtesting.html">
+            <a href="alarktabs.html">
                 <h2>Tabs on different html pages</h2>
               </a>
             <p class="section-text">
@@ -192,14 +189,31 @@
             </p>
         </div>
         <div class="text-container">
-            <h2 class="section-title">Sources</h2>
+            <h2 class="section-title">Resources</h2>
             <p class="section-text">
+                W3Schools<br/>
+                D3 Gallery<br/>
+                Alark Joshi<br/>
+                ColorBrewer<br/>
+                Viz Palette<br/>
+                Data Wrapper<br/>
                 https://www.ala.org/bbooks/book-ban-data <br/>
-https://www.ala.org/bbooks/censorship-numbers <br/>
-https://pen.org/book-bans-frequently-asked-questions/ <br/>
-https://www.them.us/story/book-bans-conservative-advocacy-groups<br/>
-https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/<br/>
-https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression-in-schools/ 
+                https://www.ala.org/bbooks/censorship-numbers <br/>
+                https://pen.org/book-bans-frequently-asked-questions/ <br/>
+                https://www.them.us/story/book-bans-conservative-advocacy-groups<br/>
+                https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/<br/>
+                https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression-in-schools/<br/>
+                https://www.thelist.com/1053945/why-the-color-purple-became-a-banned-book/<br/>
+                https://upnorthnewswi.com/2025/04/16/banned-book-of-the-month-shine-by-madisons-lauren-myracle/<br/>
+                https://www.npr.org/2022/12/21/1143100410/banned-books-author-susan-kuklin-beyond-magenta<br/>
+                https://nonprofitquarterly.org/writers-of-banned-books-speak-out/<br/>
+                https://www.teenvogue.com/story/banned-books-to-read<br/>
+                Wikipedia<br/>
+                Goodreads<br/>
+                The Banned Books Project<br/>
+                Marshall Libraries<br/>
+                The New York Times<br/>
+                Duck Duck Go AI
              </p>
         </div>
     </div>
@@ -289,94 +303,83 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
         let drugs = false;
         let religion = false;
 
-        function openTheme(evt, cityName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(cityName).style.display = "block";
-            evt.currentTarget.className += " active";
+        function openTheme(evt, themeName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(themeName).style.display = "block";
+        evt.currentTarget.className += " active";
 
-            console.log(cityName)
-
-            if (cityName == "Overview") {
-                if (!overview){
-                    thisTheme = "Default";
-                    themeCont = "#scatterplot";
-                    renderScatterplot();
-                    overview = true;
-                }
-            } else if (cityName == "Sexual"){
-                if (!mature){
-                    thisTheme = "Sexual Content & Profanity";
-                    themeCont = "#scatterplot-mature";
-                    thisColor = "#1b9c9e";
-                    renderScatterplotSpecific();  
-                    mature = true; 
-                }
-                
-            } else if (cityName == "Violence") {
-                if (!violence){
-                    thisTheme = "Violence & Abuse";
-                    themeCont = "#scatterplot-violence";
-                    thisColor = "#d95f02";
-                    renderScatterplotSpecific();   
-                    violence = true; 
-                }
-                
-            } else if (cityName == "Race") {
-                if (!race) {
-                    thisTheme = "Race/Racism";
-                    themeCont = "#scatterplot-race";
-                    thisColor = "#7570b3";
-                    renderScatterplotSpecific();
-                    race = true;
-                }
-                
-            } else if (cityName == "Sexuality") {
-                if (!sexuality){
-                    thisTheme = "Sexuality/Gender";
-                    themeCont = "#scatterplot-sexuality";
-                    thisColor = "#e7298a";
-                    renderScatterplotSpecific();
-                    sexuality = true;
-                }
-
-            } else if (cityName == "Death") {
-                if (!death) {
-                    thisTheme = "Death & Illness";
-                    themeCont = "#scatterplot-death";
-                    thisColor = "#66a61e";
-                    renderScatterplotSpecific();
-                    death = true;
-                }
-                
-            } else if (cityName == "Drugs") {
-                if (!drugs) {
-                    thisTheme = "Drugs & Alcohol";
-                    themeCont = "#scatterplot-drugs";
-                    thisColor = "#e6ab02";
-                    renderScatterplotSpecific();
-                    drugs = true;
-                }
-                
-            } else if (cityName == "Religion") {
-                if (!religion){
-                    thisTheme = "Religion & Politics";
-                    themeCont = "#scatterplot-religion";
-                    thisColor = "#a6761d";
-                    renderScatterplotSpecific();
-                    religion = true;
-                }
-                
+        if (themeName == "Overview") {
+            if (!overview){
+                thisTheme = "Default";
+                themeCont = "#scatterplot";
+                renderScatterplot();
+                overview = true;
             }
-            // console.log(thisTheme);
-            // console.log(themeCont);
+        } else if (themeName == "Sexual"){
+            if (!mature){
+                thisTheme = "Sexual Content & Profanity";
+                themeCont = "#scatterplot-mature";
+                thisColor = "#1b9c9e";
+                renderScatterplotSpecific();  
+                mature = true; 
+            }
+        } else if (themeName == "Violence") {
+            if (!violence){
+                thisTheme = "Violence & Abuse";
+                themeCont = "#scatterplot-violence";
+                thisColor = "#d95f02";
+                renderScatterplotSpecific();   
+                violence = true; 
+            }
+        } else if (themeName == "Race") {
+            if (!race) {
+                thisTheme = "Race/Racism";
+                themeCont = "#scatterplot-race";
+                thisColor = "#7570b3";
+                renderScatterplotSpecific();
+                race = true;
+            }
+        } else if (themeName == "Sexuality") {
+            if (!sexuality){
+                thisTheme = "Sexuality/Gender";
+                themeCont = "#scatterplot-sexuality";
+                thisColor = "#e7298a";
+                renderScatterplotSpecific();
+                sexuality = true;
+            }
+        } else if (themeName == "Death") {
+            if (!death) {
+                thisTheme = "Death & Illness";
+                themeCont = "#scatterplot-death";
+                thisColor = "#66a61e";
+                renderScatterplotSpecific();
+                death = true;
+            }
+        } else if (themeName == "Drugs") {
+            if (!drugs) {
+                thisTheme = "Drugs & Alcohol";
+                themeCont = "#scatterplot-drugs";
+                thisColor = "#e6ab02";
+                renderScatterplotSpecific();
+                drugs = true;
+            }
+        } else if (themeName == "Religion") {
+            if (!religion){
+                thisTheme = "Religion & Politics";
+                themeCont = "#scatterplot-religion";
+                thisColor = "#a6761d";
+                renderScatterplotSpecific();
+                religion = true;
+            }
+        }
         }
 
         // Get the element with id="defaultOpen" and click on it
@@ -485,7 +488,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                             .attr("class", "tooltip")
                             .style("text-align", "left")
                             .style("height", "auto")
-                            .style("left", (event.pageX + 10) + "px")
+                            .style("left", (event.pageX + 15) + "px")
                             .style("top", (event.pageY + 10) + "px");
                         })
                     .on("mouseout", function(d) {
@@ -517,135 +520,143 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
             const width = containerWidthScatter - margins.left - margins.right;
             const height = containerHeightScatter - margins.top - margins.bottom;
 
-            const svg = d3.select("#scatterplot-mature")
+            const svg = d3.select(themeCont)
                 .append("svg")
                 .attr("width", containerWidthScatter)
                 .attr("height", containerHeightScatter)
                 .append("g")
                 .attr("transform", `translate(${margins.left},${margins.top})`);
 
-            var div = d3.select("body").append("div")
-                .attr("class", "tooltip")
-                .style("opacity", 0);
+                var div = d3.select("body").append("div")
+                    .attr("class", "tooltip")
+                    .style("opacity", 0);
 
-            d3.csv("bannedBooksThemesUpdated.csv").then(function(data) {
-                data.forEach(function(d) {
-                    d.Times = +d.Times;
-                    d.NumStates = +d.NumStates;
-                });
+                d3.csv("bannedBooksThemesUpdated.csv").then(function(data) {
+                    data.forEach(function(d) {
+                        d.Times = +d.Times;
+                        d.NumStates = +d.NumStates;
+                        // Add a property to determine if this book belongs to the current theme
+                        d.belongsToTheme = (d.Reason === thisTheme || d.SecondReason === thisTheme || d.ThirdReason === thisTheme);
+                    });
+                    
+                    // Filter data to only include books with this theme
+                    const filteredData = data.filter(d => d.belongsToTheme);
 
-                // scale for x axis
-                const x = d3
-                    .scaleLinear()
-                    .domain([0, d3.max(data.map((d) => d.Times))])
-                    .range([0, width]);
+                    // scale for x axis
+                    const x = d3
+                        .scaleLinear()
+                        .domain([0, d3.max(data.map((d) => d.Times))])
+                        .range([0, width]);
 
-                // scale for y axis
-                const y = d3
-                    .scaleLinear()
-                    .domain([
-                        0,
-                        d3.max(data, (d) => d.NumStates),
-                    ])
-                    .nice()
-                    .range([height, 0]);
+                    // scale for y axis
+                    const y = d3
+                        .scaleLinear()
+                        .domain([
+                            0,
+                            d3.max(data, (d) => d.NumStates),
+                        ])
+                        .nice()
+                        .range([height, 0]);
 
-                const color = d3.scaleOrdinal()
-                    .domain([thisTheme, "Other"])
-                    .range([thisColor,'rgba(124, 124, 124, 0.25)']);
+                    // adding x axis
+                    svg.append("g")
+                        .attr("class", "axis axis-x")
+                        .attr("transform", `translate(0, ${height})`)
+                        .call(d3.axisBottom(x).ticks(10))
+                        .selectAll("text")
+                        .style("font-size", "11pt");
 
-                // adding x axis
-                svg.append("g")
-                    .attr("class", "axis axis-x")
-                    .attr("transform", `translate(0, ${height})`)
-                    .call(d3.axisBottom(x).ticks(10))
-                    .selectAll("text")
-                    .style("font-size", "11pt");
+                    // adding y axis
+                    svg.append("g")
+                        .attr("class", "axis axis-y")
+                        .call(d3.axisLeft(y).ticks(5))
+                        .selectAll("text")
+                        .style("font-size", "11pt");
 
-                // adding y axis
-                svg.append("g")
-                    .attr("class", "axis axis-y")
-                    .call(d3.axisLeft(y).ticks(5))
-                    .selectAll("text")
-                    .style("font-size", "11pt");
+                    svg.append("text")
+                        .attr("class", "axes")
+                        .attr("x", width/2)
+                        .attr("y", 485)
+                        .attr("text-anchor", "middle")
+                        .style("font-size", "13pt")
+                        .text("Times Banned");
 
-                svg.append("text")
-                    .attr("class", "axes")
-                    .attr("x", width/2)
-                    .attr("y", 465)
-                    .attr("text-anchor", "middle")
-                    .style("font-size", "13pt")
-                    .text("Times Banned");
+                    svg.append("text")
+                        .attr("class", "axes")
+                        .attr("x", height/-2)
+                        .attr("y", -45)
+                        .attr("transform", "rotate(-90)")
+                        .attr("text-anchor", "middle")
+                        .style("font-size", "13pt")
+                        .text("Number of States Banned In");
 
-                svg.append("text")
-                    .attr("class", "axes")
-                    .attr("x", height/-2)
-                    .attr("y", -45)
-                    .attr("transform", "rotate(-90)")
-                    .attr("text-anchor", "middle")
-                    .style("font-size", "13pt")
-                    .text("Number of States Banned In");
+                    svg.append("text")
+                        .attr("x", 50)
+                        .attr("y", height + 80)
+                        .attr("text-anchor", "middle")
+                        .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
 
-                svg.append("text")
-                    .attr("x", 50)
-                    .attr("y", height + 80)
-                    .attr("text-anchor", "middle")
-                    .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
+                    // Add count information
+                    // svg.append("text")
+                    //     .attr("x", width - 100)
+                    //     .attr("y", 20)
+                    //     .attr("text-anchor", "end")
+                    //     .style("font-size", "12pt")
+                    //     .text(`Books: ${filteredData.length} of ${data.length}`);
 
-                // adding points
-                svg.selectAll(".point")
-                    .data(data)
-                    .enter()
-                    .append("circle")
-                    .attr("class", "point")
-                    .attr("cx", d => x(d.Times))
-                    .attr("r", 7)
-                    .attr("cy", d => y(d.NumStates) + jitter())
-                    .style("stroke-width", "0px")
-                    .style("opacity", "0.6")
-                    .attr("fill", function(d) {
-                        // console.log(d.Reason);
-                        // console.log(d.Reason == thisTheme)
-                        if (d.Reason == thisTheme) {
-                            return color(thisTheme)
-                        } else if (d.SecondReason == thisTheme){
-                            return color(thisTheme)
-                        } else if (d.ThirdReason == thisTheme) {
-                            return color(thisTheme)
-                        }
-                        return color("Other") 
-                    })
-                    .on("mouseover", function(event,d) {
-                        div.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        div.html(d.Title + " by " + d.Author + "<br/> Themes: " + d.Reason + "<br/>" + d.SecondReason + "<br/>" + d.ThirdReason)
-                            .attr("class", "tooltip")
-                            .style("text-align", "left")
-                            .style("height", "auto")
-                            .style("left", (event.pageX + 10) + "px")
-                            .style("top", (event.pageY + 10) + "px");
-                    })
-                    .on("mouseout", function(d) {
-                        div.transition()
+                    // adding points - ONLY for the filtered data
+                    svg.selectAll(".point")
+                        .data(filteredData)  // Use filtered data
+                        .enter()
+                        .append("circle")
+                        .attr("class", "point")
+                        .attr("cx", d => x(d.Times))
+                        .attr("r", 7)
+                        .attr("cy", d => y(d.NumStates) + jitter())
+                        .style("stroke-width", "0px")
+                        .style("opacity", "0.8")
+                        .attr("fill", thisColor)
+                        .on("mouseover", function(event,d) {
+                            div.transition()
+                                .duration(200)
+                                .style("opacity", .9);
+                            div.html(d.Title + " by " + d.Author + "<br/> Themes: " + d.Reason + 
+                                (d.SecondReason ? "<br/>" + d.SecondReason : "") + 
+                                (d.ThirdReason ? "<br/>" + d.ThirdReason : ""))
+                                .attr("class", "tooltip")
+                                .style("text-align", "left")
+                                .style("height", "auto")
+                                .style("left", (event.pageX + 15) + "px")
+                                .style("top", (event.pageY + 10) + "px");
+                            })
+                        .on("mouseout", function(d) {
+                            div.transition()
                             .duration(500)
                             .style("opacity", 0);
-                    });
+                        });
 
-                    const bubbleLegend = d3.legendColor()
-                        .shape("circle")
-                        .shapeRadius(7)
-                        .shapePadding(10)
-                        .scale(color)
-                        .title("Themes");
-
+                    // Simple legend just showing the current theme
                     const legend = svg.append("g")
                         .attr("class", "legend")
-                        .attr("transform", `translate(${width-120}, 180)`)
-                        .style("font-size", "11pt")
-                        .call(bubbleLegend);
-
-            });
+                        .attr("transform", `translate(${width - 120}, 200)`);
+                        
+                    legend.append("circle")
+                        .attr("r", 7)
+                        .attr("cx", 10)
+                        .attr("cy", 5)
+                        .attr("fill", thisColor);
+                        
+                    legend.append("text")
+                        .attr("x", 25)
+                        .attr("y", 9)
+                        .text(thisTheme);
+                        
+                    legend.append("text")
+                        .attr("x", 20)
+                        .attr("y", -15)
+                        .attr("font-weight", "bold")
+                        .text("Theme");
+                });
         }
 
         // Donut Charts
@@ -929,8 +940,6 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
 
         // Treemap
         function renderTreemap() {
-            // const containerWidth = 1000;
-            // const containerHeight = 600;
             const margins = { top: 20, right: 300, bottom: 100, left: 30 };
             const width = containerWidth - margins.left - margins.right;
             const height = containerHeight - margins.top - margins.bottom - 20;
@@ -1018,7 +1027,7 @@ https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression
                     .html("Data Source: <a href='https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression-in-schools/#heading-5'>PEN America</a>");
         }
 
-    function renderCartogram() {
+        function renderCartogram() {
 
         // Set up dimensions
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
