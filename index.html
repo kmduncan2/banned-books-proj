@@ -279,7 +279,18 @@
         const containerWidth = 1000;
         const containerHeight = 600;
 
-        function jitter(){
+        function jittery(){
+            let i = Math.random()*10;
+            if (i <= 5) {
+                j = -4;
+            } else {
+                j = 4;
+            }
+            return Math.random() * j;
+
+        }
+
+        function jitterx(){
             let i = Math.random()*10;
             if (i <= 5) {
                 j = -2;
@@ -287,7 +298,6 @@
                 j = 2;
             }
             return Math.random() * j;
-
         }
 
         let thisTheme = "";
@@ -473,9 +483,9 @@
                     .enter()
                     .append("circle")
                     .attr("class", "point")
-                    .attr("cx", d => x(d.Times))
+                    .attr("cx", d => x(d.Times) + jitterx())
                     .attr("r", 7)
-                    .attr("cy", d => y(d.NumStates) + jitter())//Math.random() + Math.random()*2
+                    .attr("cy", d => y(d.NumStates) + jittery())
                     .style("stroke-width", "0px")
                     .style("opacity", "0.6")
                     .attr('fill', d => color(d["Reason"]))
@@ -609,9 +619,9 @@
                         .enter()
                         .append("circle")
                         .attr("class", "point")
-                        .attr("cx", d => x(d.Times))
+                        .attr("cx", d => x(d.Times) + jitterx())
                         .attr("r", 7)
-                        .attr("cy", d => y(d.NumStates) + jitter())
+                        .attr("cy", d => y(d.NumStates) + jittery())
                         .style("stroke-width", "0px")
                         .style("opacity", "0.8")
                         .attr("fill", thisColor)
