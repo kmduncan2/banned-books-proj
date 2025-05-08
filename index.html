@@ -240,6 +240,11 @@
             </p>
         </div>
         <div class="text-container">
+            <a href="packing.html">
+                <h2>Circle Packing</h2>
+              </a>
+        </div>
+        <div class="text-container">
             <h2 class="section-title">Resources</h2>
             <p class="section-text">
                 W3Schools<br/>
@@ -1087,6 +1092,7 @@
                 var legend = d3.legendColor()
                     .labelFormat(d3.format(".0f"))
                     .title("Number of Challenges")
+                    .labels(d3.legendHelpers.thresholdLabels)
                     .shapeWidth(50)
                     .scale(banColors);
 
