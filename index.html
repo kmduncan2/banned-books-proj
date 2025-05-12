@@ -445,7 +445,7 @@
                 .attr("class", "tooltip")
                 .style("opacity", 0);
 
-            d3.csv("bannedBooksThemesUpdated.csv").then(function(data) {
+            d3.csv("data/bannedBooksThemesUpdated.csv").then(function(data) {
                 data.forEach(function(d) {
                     d.Times = +d.Times;
                     d.NumStates = +d.NumStates;
@@ -576,7 +576,7 @@
                     .attr("class", "tooltip")
                     .style("opacity", 0);
 
-                d3.csv("bannedBooksThemesUpdated.csv").then(function(data) {
+                d3.csv("data/bannedBooksThemesUpdated.csv").then(function(data) {
                     data.forEach(function(d) {
                         d.Times = +d.Times;
                         d.NumStates = +d.NumStates;
@@ -718,7 +718,7 @@
                 .attr("class", "tooltip")
                 .style("opacity", 0);
 
-            d3.csv("where-challenged.csv").then(function(data) {
+            d3.csv("data/where-challenged.csv").then(function(data) {
                 data.forEach(function(d) {
                     // converting percentage data from string to int
                     d.percentage = +d.percentage;
@@ -804,7 +804,7 @@
                 .attr("class", "tooltip")
                 .style("opacity", 0);
 
-            d3.csv("who-challenges.csv").then(function(data) {
+            d3.csv("data/who-challenges.csv").then(function(data) {
                 data.forEach(function(d) { 
                     // converting percentage data from string to int
                     d.percentage = +d.percentage;
@@ -894,7 +894,7 @@
                 .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e']);
 
             // reading data from json file
-            d3.json("treemapThemeData.json").then(function(data) {
+            d3.json("data/treemapThemeData.json").then(function(data) {
                 //Hierarchical data processing
                 const root = d3.hierarchy(data)
                     .sum(d => d.value)
@@ -1005,7 +1005,7 @@
                 .attr("class", "tooltip")
                 .style("opacity", 0);
 
-            d3.csv("stateCodeBookBans.csv").then(function(data) {
+            d3.csv("data/stateCodeBookBans.csv").then(function(data) {
                 data.forEach(function(d) { // saving all number data back into itself as an int instead of a string
                     d.Bans = +d.Bans;
                     d.row = +d.row;
