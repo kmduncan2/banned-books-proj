@@ -1,33 +1,17 @@
 package main
 
+/*
+	this program will only tell you the number of bans in each state.
+	if you want to use this data for the cartogram you need to add state abbreviations and column & row numbers
+	yourself or you will need to modify the program to do it for you.
+*/
+
 import (
 	"encoding/csv"
 	"fmt"
 	"os"
 	"strconv"
 )
-
-// type State struct {
-// 	code    string
-// 	name    string
-// 	row     int
-// 	col     int
-// 	numBans int
-// }
-
-// func NewState(abbr, state string, inRow, inCol int) State {
-// 	return State{
-// 		code:    abbr,
-// 		name:    state,
-// 		row:     inRow,
-// 		col:     inCol,
-// 		numBans: 0,
-// 	}
-// }
-
-// func (state *State) incBans() {
-// 	state.numBans++
-// }
 
 func ProcessState(fileName string, states map[string]int) map[string]int {
 	file, err := os.Open(fileName)
@@ -38,7 +22,7 @@ func ProcessState(fileName string, states map[string]int) map[string]int {
 	defer file.Close()
 
 	reader := csv.NewReader(file)
-	//var book Book
+
 	for {
 		row, err2 := reader.Read() // row is an array of strings for each col in row
 		if err2 != nil {
@@ -47,14 +31,11 @@ func ProcessState(fileName string, states map[string]int) map[string]int {
 
 		states[row[6]]++
 
-		//fmt.Println(row[6])
-
 	}
-
-	//return states
 }
 
 func main() {
+	// initializing the map to ensure every state has an entry
 	stateMap := map[string]int{
 		"Alaska":         0,
 		"Alabama":        0,
@@ -107,9 +88,13 @@ func main() {
 		"Wisconsin":      0,
 		"Wyoming":        0,
 	}
-	fileName := "2023-2024-bans.csv"
+
+	// establishing the csv file to read data from
+	fileName := "2023-2024-bans.csv" // you may need to move the data file into a different folder if it can't find it
+	// populating the map based on data from csv file
 	stateMap = ProcessState(fileName, stateMap)
 
+	// creating the new csv file
 	file, err := os.Create("stateBookBans.csv")
 	if err != nil {
 		fmt.Printf("error creating csv file: %v\n", err)
@@ -120,12 +105,14 @@ func main() {
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
 
+	// writing the column names into the CSV file
 	err = writer.Write([]string{"State", "Bans"})
 	if err != nil {
 		fmt.Printf("error writing categories csv file: %v\n", err)
 		return
 	}
 
+	// writing the map entires into the CSV file one by one
 	for key, num := range stateMap {
 		csvRow := []string{key, strconv.Itoa(num)}
 		err = writer.Write(csvRow)

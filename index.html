@@ -16,11 +16,13 @@
 </style>
 <body>
     <div class="container">
+        <!-- title & author -->
         <div class="heading"> 
             <h1 class="heading-text" style = "font-size: 43pt;">5,813 books were challenged <br/>in the US in 2024</h1>
             <p style = "color: #ffffff; text-align: center; font-size: 14pt;">Created by: Kade Duncan</p>
     
         </div>
+        <!-- intro -->
         <div class="text-container">
              <p class="section-text">
                 Over the last 5 years, book bans have become more prevalent in the United States. 
@@ -28,11 +30,13 @@
                 increase in the numbers of books banned and challenged yearly in the US.
              </p>
         </div>
+        <!-- datawrapper overlaid bars -->
         <div class="chart-container">
             <h2 class="chart-title">Books Challenged in the Last 10 Years</h2>
             <div style="min-height:425px" id="datawrapper-vis-ULINl"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ULINl/embed.js" charset="utf-8" data-target="#datawrapper-vis-ULINl"></script><noscript><img src="https://datawrapper.dwcdn.net/ULINl/full.png" alt="" /></noscript></div>
             <div id="datawrapper"></div>
         </div>
+        <!-- overlaid bars analysis -->
         <div class="text-container">
             <p class="section-text">
                 Between 2015 and 2020, the number of titles challenged stayed relatively steady, 
@@ -42,6 +46,7 @@
                 may seem alarming, but abstract, so what does this mean?
              </p>
         </div>
+        <!-- context/explanation -->
         <div class="context">
             <h2 class="context-title">What is a book ban?</h2>
             <p class="context-text" style="font-size: 18pt;">
@@ -54,6 +59,7 @@
                 objections to its content." A ban, however, is the actual restriction of a challenged book.
             </p>
         </div>
+        <!-- so whats happneing -->
         <div class="text-container">
             <h2 class="section-title">So, what's happening?</h2>
             <p class="section-text">
@@ -62,10 +68,12 @@
                 restricted in libraries.
              </p>
         </div>
+        <!-- where donut chart -->
         <div class="chart-container">
             <h2 class="chart-title">Public Libraries Face The Most Censorship</h2>
             <div id="donut-chart"></div>
         </div>
+        <!-- where donut chart analysis -->
         <div class="text-container">
             <p class="section-text">
                 Libraries make up 93% of the places where books were banned last year. Libraries are 
@@ -76,10 +84,12 @@
                 to diverse information unless they can find somewhere to buy it. 
              </p>
         </div>
+        <!-- cartogram -->
         <div class="chart-container">
             <h2 class="chart-title">Number of Challenges in Each State 2023-2024 School Year</h2>
             <div id="cartogram-chart"></div>
         </div>
+        <!-- cartogram analysis -->
         <div class="text-container">
             <p class="section-text">
                 Out of the 10,046 book bans in the United States during the 2023-2024 School Year, Florida 
@@ -91,14 +101,13 @@
                 Further, among the most gerrymandered states, many are red. While data shows that the most censorship is 
                 occurring in predominantly red states, are those government officials the ones responsible for the bans?
              </p>
-             <!-- <a href = "/packing.html">circle packing</a>
-             <a href = "/cartogram.html">cartogram</a> -->
-             <!-- <a href = "/pcoord.html">parallel coordinates</a> -->
         </div>
+        <!-- who donut chart -->
         <div class="chart-container">
             <h2 class="chart-title">School Administrations Are Responsible For Over 1/3 of Challenges</h2>
             <div id="donut-chart2"></div>
         </div>
+        <!-- who donut chart analysis -->
         <div class="text-container">
             <p class="section-text">
                 Despite libraries being the primary target of these bans, librarians, teachers, and staff only 
@@ -113,14 +122,12 @@
                 for the public?
              </p>
         </div>
-        <!-- <div class="chart-container">
-            <h2 class="chart-title">Themes of Books Banned in 2022-2023</h2>
-            <div id="bar-chart"></div>
-        </div> -->
+        <!-- treemap -->
         <div class="chart-container">
             <h2 class="chart-title">Themes of Books Banned in 2022-2023</h2>
             <div id="treemap"></div>
         </div>
+        <!-- treemap analysis -->
         <div class="text-container">
             <p class="section-text">
                 During the 2022-2023 academic year, the single largest reason behind book challenges was the inclusion 
@@ -132,6 +139,7 @@
                 kids who look for resources to help them learn about themselves and stay healthy should not be turned away. 
              </p>
         </div>
+        <!-- scatterplot -->
         <div class="chart-container" style="height: 700px;">
             <div class="tab">
                 <button class="tablinks" onclick="openTheme(event, 'Overview')" id="defaultOpen">Overview</button>
@@ -199,10 +207,8 @@
                 </p>
             </div>
         </div>
+        <!-- scatterplot analysis -->
         <div class="text-container">
-            <!-- <a href="alarktabs.html">
-                <h2>Tabs on different html pages</h2>
-              </a> -->
             <p class="section-text">
                 Similarly to the 2022-2023 academic year, themes of violence & abuse are big contributors to why books 
                 are challenged and subsequently banned. However, the inclusion of sexual content or profanity makes a 
@@ -216,6 +222,7 @@
                 sex may be the most cited reasons for challenges, but what content is actually being targeted and why?
              </p>
         </div>
+        <!-- Why should you care/ what can you do -->
         <div class="context" style = "height: auto;">
             <h2 class="context-title">Why Should You Care?</h2>
             <p class="context-text" style = "font-size: 18pt;">
@@ -239,6 +246,7 @@
                 yourself and others be silenced; <strong>make sure your voice is heard.</strong>
             </p>
         </div>
+        <!-- Sources -->
         <div class="text-container">
             <h2 class="section-title">Resources</h2>
             <p class="section-text">
@@ -271,14 +279,14 @@
         </div>
     </div>
 
-    <!-- <div class="tooltip" id="tooltip"></div> -->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     <script>
+        // setting up the same container dimensions for all charts (except scatterplots)
         const containerWidth = 1000;
         const containerHeight = 600;
 
+        // jittering function for the scatterpot y-axis
         function jittery(){
             let i = Math.random()*10;
             if (i <= 5) {
@@ -290,6 +298,7 @@
 
         }
 
+        // jittering function for the scatterpot x-axis
         function jitterx(){
             let i = Math.random()*10;
             if (i <= 5) {
@@ -300,6 +309,7 @@
             return Math.random() * j;
         }
 
+        // initializing variables used for scatterplot tabs
         let thisTheme = "";
         let themeCont = "";
         let thisColor = "";
@@ -313,6 +323,7 @@
         let religion = false;
 
         function openTheme(evt, themeName) {
+        // controls how the tabs look and how they get opened
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
@@ -325,6 +336,23 @@
         document.getElementById(themeName).style.display = "block";
         evt.currentTarget.className += " active";
 
+        /*
+            Checks which tab is being opened and will render the corresponding chart in that div
+            only if it is the first time opening the tab. Otherwise, it will simply open the tab
+            to that div and the previously rendered chart will still be there. This helps to avoid
+            having multiple of the same chart appear on the same page if you go to that tab more
+            than once.
+
+            thisTheme -> used to determine what scatterplot/data to plot. Default correlates to the Overview 
+                         chart and the others determine what data to filter out.
+
+            themeCont -> used to determine what div the chart should be rendered on
+
+            thisColor -> sets the fill color to the correct color for each theme
+
+            overview/mature/etc -> used to determine if the tab has already been visited (i.e. if the chart 
+                                   has already been rendered)
+        */
         if (themeName == "Overview") {
             if (!overview){
                 thisTheme = "Default";
@@ -391,11 +419,15 @@
         }
         }
 
-        // Get the element with id="defaultOpen" and click on it
+        /*
+            Get the element with id="defaultOpen" and click on it
+            this will render the overview scattplot when the page opens
+        */
         document.getElementById("defaultOpen").click();
 
         // Scatterplots
         function renderScatterplot() {
+            // scatterplots need their own container dimensions because of the tabs
             const containerWidthScatter = 874;
             const containerHeightScatter = 520;
             const margins = { top: 20, right: 90, bottom: 100, left: 60 };
@@ -435,6 +467,7 @@
                     .nice()
                     .range([height, 0]);
 
+                // defining color scale
                 const color = d3.scaleOrdinal()
                     .domain(["Sexual Content & Profanity", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness", "Drugs & Alcohol", "Religion & Politics"])
                     .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e','#e6ab02','#a6761d']);//d3.schemeSet2
@@ -471,13 +504,14 @@
                     .style("font-size", "13pt")
                     .text("Number of States Banned In");
 
+                // clickable label for data source
                 svg.append("text")
                     .attr("x", 50)
                     .attr("y", height + 80)
                     .attr("text-anchor", "middle")
                     .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
 
-                    // adding points
+                // adding points
                 svg.selectAll(".point")
                     .data(data)
                     .enter()
@@ -506,6 +540,7 @@
                         .style("opacity", 0);
                     });
 
+                    // creating and appending color legend to chart
                     const bubbleLegend = d3.legendColor()
                         .shape("circle")
                         .shapeRadius(7)
@@ -523,6 +558,7 @@
         }
 
         function renderScatterplotSpecific() {
+            // scatterplots need their own container dimensions because of the tabs
             const containerWidthScatter = 874;
             const containerHeightScatter = 520;
             const margins = { top: 20, right: 90, bottom: 100, left: 60 };
@@ -599,19 +635,12 @@
                         .style("font-size", "13pt")
                         .text("Number of States Banned In");
 
+                    // clickable label for data source
                     svg.append("text")
                         .attr("x", 50)
                         .attr("y", height + 80)
                         .attr("text-anchor", "middle")
                         .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
-
-                    // Add count information
-                    // svg.append("text")
-                    //     .attr("x", width - 100)
-                    //     .attr("y", 20)
-                    //     .attr("text-anchor", "end")
-                    //     .style("font-size", "12pt")
-                    //     .text(`Books: ${filteredData.length} of ${data.length}`);
 
                     // adding points - ONLY for the filtered data
                     svg.selectAll(".point")
@@ -619,9 +648,9 @@
                         .enter()
                         .append("circle")
                         .attr("class", "point")
-                        .attr("cx", d => x(d.Times) + jitterx())
+                        .attr("cx", d => x(d.Times) + jitterx()) // plots the points with noise
                         .attr("r", 7)
-                        .attr("cy", d => y(d.NumStates) + jittery())
+                        .attr("cy", d => y(d.NumStates) + jittery()) // plots the points with noise
                         .style("stroke-width", "0px")
                         .style("opacity", "0.8")
                         .attr("fill", thisColor)
@@ -669,9 +698,8 @@
         }
 
         // Donut Charts
+        // where donut chart
         function renderDonutChart() {
-            // const containerWidth = 900;
-            // const containerHeight = 600;
             const margin = { top: 50, right: 50, bottom: 50, left: 50 };
             const width = containerWidth - margin.left - margin.right;
             const height = containerHeight - margin.top - margin.bottom;
@@ -685,22 +713,28 @@
                 .append("g")
                 .attr("transform", `translate(${margin.left},${margin.top})`);
 
+            // creating tooltip div
             var div = d3.select("body").append("div")
                 .attr("class", "tooltip")
                 .style("opacity", 0);
 
             d3.csv("where-challenged.csv").then(function(data) {
                 data.forEach(function(d) {
+                    // converting percentage data from string to int
                     d.percentage = +d.percentage;
+                    // setting keys and values in map
                     banner.set(d.place, d.percentage);
                 });
                 
+                // data now points to the map and not the csv data
                 data = banner;
 
+                // defining color scale
                 const color = d3.scaleOrdinal()
                 .domain(["Public Libraries", "School Libraries", "Schools", "Higher Education/Other"])
                 .range(['#8da0cb','#66c2a5','#fc8d62','#e78ac3']);
 
+                // adding color legend
                 svg.append("g")
                     .attr("class", "legendQuant")
                     .attr("transform", `translate(${width-300},${height/2 - 100})`);
@@ -713,8 +747,9 @@
                 svg.select(".legendQuant")
                     .call(legend);
 
+                // clickable label for data source
                 svg.append("text")
-                    .attr("x", 130)//width/2
+                    .attr("x", 130)
                     .attr("y", height - 30)
                     .attr("text-anchor", "middle")
                     .html("Data Source: <a href='https://www.ala.org/bbooks/censorship-numbers'>American Library Association</a>");
@@ -733,7 +768,7 @@
                     .attr('fill', d => color(d.data[0]))//advocates
                     .attr("stroke", "black")
                     .style("stroke-width", "1px")
-                    .attr("transform", `translate(${width/2 - 180},${height/2 - 50})`)//;
+                    .attr("transform", `translate(${width/2 - 180},${height/2 - 50})`)
                     .on("mouseover", function(event,d) {
                         div.transition()
                             .duration(200)
@@ -750,9 +785,8 @@
             });
         }
 
+        // who donut chart
         function renderDonutChart2() {
-            // const containerWidth = 900;
-            // const containerHeight = 600;
             const margin = { top: 50, right: 50, bottom: 50, left: 50 };
             const width = containerWidth - margin.left - margin.right;
             const height = containerHeight - margin.top - margin.bottom;
@@ -771,17 +805,22 @@
                 .style("opacity", 0);
 
             d3.csv("who-challenges.csv").then(function(data) {
-                data.forEach(function(d) {
+                data.forEach(function(d) { 
+                    // converting percentage data from string to int
                     d.percentage = +d.percentage;
+                    // setting keys and values in map
                     banner.set(d.advocates, d.percentage);
                 });
-                //console.log(banner);
+                
+                // data now points to the map and not the csv data
                 data = banner;
-                //console.log(data);
+
+                // declaring color scale for each category
                 const color = d3.scaleOrdinal()
                     .domain(["Board/Administration", "Pressure Groups", "Parents", "Elected Officials/Government", "Other", "Patrons", "Librarians/Teachers/Staff"])
                     .range(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f']);
 
+                // appending legend to chart
                 svg.append("g")
                     .attr("class", "legendQuant")
                     .attr("transform", `translate(${width-300},${height/2 - 100})`);
@@ -794,8 +833,9 @@
                 svg.select(".legendQuant")
                     .call(legend);
 
+                // adding clickable data source label
                 svg.append("text")
-                    .attr("x", 130)//width/2
+                    .attr("x", 130)
                     .attr("y", height - 30)
                     .attr("text-anchor", "middle")
                     .html("Data Source: <a href='https://www.ala.org/bbooks/censorship-numbers'>American Library Association</a>");
@@ -814,7 +854,7 @@
                     .attr('fill', d => color(d.data[0]))//advocates
                     .attr("stroke", "black")
                     .style("stroke-width", "1px")
-                    .attr("transform", `translate(${width/2 - 180},${height/2 - 50})`)//;
+                    .attr("transform", `translate(${width/2 - 180},${height/2 - 50})`)
                     .on("mouseover", function(event,d) {
                         div.transition()
                             .duration(200)
@@ -828,122 +868,6 @@
                         div.transition()
                         .duration(500)
                         .style("opacity", 0)});
-            });
-        }
-
-        // Bar Chart
-        function renderBarChart() {
-            const containerWidth = 900;
-            const containerHeight = 600;
-            const margins = { top: 20, right: 50, bottom: 100, left: 150 };
-            const width = containerWidth - margins.left - margins.right;
-            const height = containerHeight - margins.top - margins.bottom - 20;
-
-            const svg = d3.select("#bar-chart")
-                .append("svg")
-                .attr("width", containerWidth)
-                .attr("height", containerHeight)
-                .append("g")
-                .attr("transform", `translate(${margins.left},${margins.top})`);
-            
-            var div = d3.select("body").append("div")
-                .attr("class", "tooltip")
-                .style("opacity", 0);
-
-            d3.csv("themes.csv").then(function(data) {
-                // Convert string values to numbers
-            data.forEach(function(d) {
-                    d["num-books"] = +d["num-books"];
-                    //d["type"] = d.type;
-                });
-                console.log(data);
-
-                // scale for x axis
-                const x = d3.scaleLinear()
-                    .domain([0, d3.max(data, d => d["num-books"])])
-                    .range([0, width]);
-
-                // scale for y axis
-                const y = d3.scaleBand()
-                    .domain(data.map(d => d.theme))
-                    //.nice()
-                    .range([0, height])
-                    .padding(0.3);
-
-                const color = d3.scaleOrdinal()
-                    .domain(["Violence and/or Sex", "Mental Health", "Identity"])
-                    .range(["#6aa7df","#6d32b0","#900000","#f1ab64","#469f36"]);
-
-                svg.append("g")
-                    .attr("class", "legendQuant")
-                    .attr("transform", `translate(${530},${300})`);
-
-                var legend = d3.legendColor()
-                    .title("Type of Theme")
-                    .scale(color)
-                    .shapePadding(5);
-
-                svg.select(".legendQuant")
-                    .call(legend);
-
-                // adding x axis
-                svg.append("g")
-                    .attr("class", "axis axis-x")
-                    .attr("transform", `translate(0, ${height})`)
-                    .call(d3.axisBottom(x));
-
-                // adding y axis
-                svg.append("g")
-                    .attr("class", "axis axis-y")
-                    .call(d3.axisLeft(y).ticks(5));
-
-                svg.append("text")
-                    .attr("class", "axes")
-                    .attr("x", width/2)
-                    .attr("y", 510)
-                    .attr("text-anchor", "middle")
-                    .text("Number of Books");
-
-                svg.append("text")
-                    .attr("class", "axes")
-                    .attr("x", height/-2)
-                    .attr("y", -70)
-                    .attr("transform", "rotate(-90)")
-                    .attr("text-anchor", "middle");
-
-                svg.append("text")
-                    .attr("x", -50)
-                    .attr("y", height + 50)
-                    .attr("text-anchor", "middle")
-                    .html("Data Source: <a href='https://pen.org/report/banned-in-the-usa-state-laws-supercharge-book-suppression-in-schools/'>PEN America</a>");
-
-                // adding bars
-                svg.selectAll(".bar")
-                    .data(data)
-                    .enter()
-                    .append("rect")
-                    .attr("class", "bar")
-                    .attr("x", 0)
-                    .attr("width", d => x(d["num-books"]))
-                    .attr("y", d => y(d.theme))
-                    .attr("height", y.bandwidth())
-                    //.style("fill", "#c71e1d");
-                    .attr('fill', d => color(d["type"]))
-                    .on("mouseover", function(event,d) {
-                        div.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        div.html(d["num-books"] + " books")
-                            .attr("class", "tooltip")
-                            .style("left", (event.pageX + 10) + "px")
-                            .style("top", (event.pageY + 10) + "px");
-                        })
-                    .on("mouseout", function(d) {
-                        div.transition()
-                        .duration(500)
-                        .style("opacity", 0);
-                    });
-            
             });
         }
 
@@ -964,17 +888,17 @@
                 .attr("class", "tooltip")
                 .style("opacity", 0);
 
-            // Color scale for categories using ColorBrewer scheme
+            // color scale for categories using ColorBrewer scheme
             const color = d3.scaleOrdinal()
                 .domain(["Sexual Content & Profanity", "Violence & Abuse", "Race/Racism", "Sexuality/Gender", "Death & Illness"])
                 .range(["#1b9c9e",'#d95f02','#7570b3','#e7298a','#66a61e']);
 
+            // reading data from json file
             d3.json("treemapThemeData.json").then(function(data) {
                 //Hierarchical data processing
                 const root = d3.hierarchy(data)
                     .sum(d => d.value)
                     .sort((a, b) => b.value - a.value);
-                // var root = d3.hierarchy(data).sum(function(d){ return d.value})
 
                 // Create treemap layout
                 d3.treemap()
@@ -1038,13 +962,15 @@
                     .scale(color)
                     .title("Categories");
 
+                // appending the legend to the chart container
                 const legend = svg.append("g")
                     .attr("class", "legend")
                     .attr("transform", `translate(${width + 20}, 20)`)
                     .style("inline-size", "60px")
                     .style("overflow-wrap", "break-all")
                     .call(treeLegend);
-
+                
+                // adding a label with a clickable link to the data source
                 svg.append("text")
                     .attr("x", 100)
                     .attr("y", height + 40)
@@ -1073,23 +999,28 @@
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
-            // Create a tooltip
+            // creates the tooltip div
             const tooltip = d3.select("body")
                 .append("div")
                 .attr("class", "tooltip")
                 .style("opacity", 0);
 
             d3.csv("stateCodeBookBans.csv").then(function(data) {
-                data.forEach(function(d) {
+                data.forEach(function(d) { // saving all number data back into itself as an int instead of a string
                     d.Bans = +d.Bans;
                     d.row = +d.row;
                     d.col = +d.col + 1;
                 });
 
+                /*
+                    defining color scale
+                    there are 6 colors instead of 5 to get rid of the NaNs on each end
+                */
                 const banColors = d3.scaleThreshold()
                     .domain([30, 60, 100, 300, 600])
                     .range(['#feebe2','#fcc5c0','#fa9fb5','#f768a1','#c51b8a','#7a0177']);
 
+                // creating and appending color legend to chart container
                 svg.append("g")
                     .attr("class", "legendQuant")
                     .attr("transform", "translate(750,300)");
@@ -1158,6 +1089,7 @@
 
             });
 
+            // adding a label with a clickable link to the data source
             svg.append("text")
                     .attr("x", 100)
                     .attr("y", 520)
@@ -1165,7 +1097,7 @@
                     .html("Data Source: <a href='https://pen.org/book-bans/pen-america-index-of-school-book-bans-2023-2024/'>PEN America</a>");
     }
 
-        // Render all charts
+        // Renders all the D3 charts other than the scatterplots
         renderCartogram();
         renderDonutChart();
         renderDonutChart2();
