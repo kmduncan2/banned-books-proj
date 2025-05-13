@@ -210,6 +210,5 @@ func main() {
 			fmt.Printf("error writing body csv file: %v\n", err)
 			break
 		}
-		fmt.Println(obj)
 	}
 }

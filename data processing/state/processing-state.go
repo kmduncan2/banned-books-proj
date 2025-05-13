@@ -78,7 +78,7 @@ func main() {
 		"Rhode Island":   0,
 		"South Carolina": 0,
 		"South Dakota":   0,
-		"Tennssee":       0,
+		"Tennessee":      0,
 		"Texas":          0,
 		"Utah":           0,
 		"Vermont":        0,
@@ -120,6 +120,5 @@ func main() {
 			fmt.Printf("error writing body csv file: %v\n", err)
 			break
 		}
-		fmt.Printf("%s : %d\n", key, num)
 	}
 }
